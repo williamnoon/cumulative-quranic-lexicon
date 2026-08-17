@@ -26,7 +26,6 @@ jobs:
           curl --fail --location --retry 3 \
             'https://raw.githubusercontent.com/bnjasim/quranic-corpus/master/quranic-corpus-morphology-0.4.txt' \
             --output .cache/qac/quranic-corpus-morphology-0.4.txt
-          test "$(git ls-remote https://github.com/bnjasim/quranic-corpus.git refs/heads/master | cut -f1)" != ""
 
       - name: Calculate all 114 study days
         run: |
@@ -42,12 +41,14 @@ jobs:
           d=json.loads(Path('data/generated/cumulative-vocabulary.json').read_text())
           assert len(d['days']) == 114
           assert [x['surah'] for x in d['days']] == list(range(114,0,-1))
-          assert d['days'][0]['new_learning_units'] == d['days'][0]['distinct_learning_units']
+          assert d['days'][0]['carried_vocabulary_items'] == 0
+          assert d['days'][0]['new_vocabulary_items'] == d['days'][0]['distinct_vocabulary_items']
           assert d['days'][112]['surah'] == 2
           assert d['days'][113]['surah'] == 1
-          assert d['metadata']['parsed_segment_rows'] > 120000
-          assert d['metadata']['parsed_stem_rows'] > 70000
-          assert d['metadata']['orthographic_word_positions'] > 77000
+          assert d['metadata']['parsed_segment_rows'] == 128219
+          assert d['metadata']['orthographic_word_positions'] == 77429
+          assert d['days'][-1]['known_after_vocabulary_items'] == 4832
+          assert d['days'][-1]['known_after_roots'] == 1642
           print(Path('data/generated/summary.json').read_text())
           PY
 
@@ -63,4 +64,4 @@ jobs:
             git push origin HEAD:${GITHUB_REF_NAME}
           fi
 
-# This workflow is intentionally self-contained so the calculation can be regenerated from the pinned corpus without chat state.
+# Self-contained: source + calculation + generated outputs are reproducible without chat state.
