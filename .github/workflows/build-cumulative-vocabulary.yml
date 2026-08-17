@@ -62,3 +62,5 @@ jobs:
             git commit -m 'data: generate 114-day cumulative Quran vocabulary'
             git push origin HEAD:${GITHUB_REF_NAME}
           fi
+
+# This workflow is intentionally self-contained so the calculation can be regenerated from the pinned corpus without chat state.
