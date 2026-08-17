@@ -4,114 +4,115 @@ Last updated: 2026-08-16
 
 ## Purpose
 
-Build a 114-day Qur'anic vocabulary-learning system in which a learner studies one surah per day, starting from the back of the Qur'an and moving toward the front, so that vocabulary knowledge compounds across the entire Qur'an rather than only Juz 'Amma.
+Build a 114-day Qur'anic vocabulary-learning system in which the learner studies one surah per day in this exact order:
 
-The intended study order is:
+`114 → 113 → ... → 3 → 2 → 1`
 
-114 → 113 → ... → 3 → 2 → 1
+Vocabulary knowledge compounds day by day. Every current-surah vocabulary item is either already learned from a previous study day or genuinely new today.
 
-The system should answer, for every surah, what vocabulary is genuinely new at that point in the sequence and what has already been learned from later-numbered surahs.
+## Current Verified State
 
-## Product Goal
+The exhaustive full-Qur'an cumulative calculation is now implemented and reproducible on branch `williamdeval/net-61-full-corpus-calculation`.
 
-A learner who follows the sequence for 114 days should be able to see and study the cumulative Qur'anic vocabulary required for each day's surah.
+The calculation uses pinned Quranic Arabic Corpus v0.4 data rather than the handcrafted teaching `WORDS` array.
 
-A key benchmark question is:
+Canonical source and generated outputs are documented in:
 
-> On the day Surah al-Baqarah (2) is reached, after Surahs 114 through 3 have already been studied, how many vocabulary items in Surah al-Baqarah are still unseen/new?
+- `docs/CALCULATION_SPEC.md`
+- `docs/CALCULATION_RESULTS.md`
+- `scripts/build_cumulative_vocab.py`
+- `data/generated/cumulative-vocabulary.csv`
+- `data/generated/cumulative-vocabulary.json`
+- `data/generated/baqarah-day-113.json`
+- `data/generated/summary.json`
 
-This must be calculated from the full Qur'an dataset, not inferred from Juz 'Amma-only statistics.
+The generated CSV contains all 114 study days, beginning with Surah 114 and ending with Surah 1.
 
-## Current Problem
+## Canonical Vocabulary Rule
 
-The current site contains all surahs in the interface, but the calculations were originally built around Juz 'Amma. Therefore the displayed cumulative/new-word calculations cannot be assumed correct for the 114-surah learning sequence.
+Primary vocabulary identity is the QAC canonical `LEM:` value on a `STEM` segment.
 
-The next implementation must calculate against every surah.
+This groups inflectional variants under one vocabulary identity while retaining genuinely different lexical/derivational forms as distinct canonical items where QAC assigns them distinct lemmas.
 
-## Core Decisions
+Roots are a separate relationship/learning dimension. Raw STEM surface spellings are retained only as a morphology diagnostic and must not be substituted for the vocabulary count.
 
-1. The unit of progression is one surah per day.
-2. The sequence starts from Surah 114 and proceeds backward toward Surah 1.
-3. Vocabulary is cumulative: once an item has appeared in an earlier study day, later appearances should be treated as known/review rather than new.
-4. Workbook content is per-surah.
-5. Drills belong inside the workbook for that surah rather than existing as a separate top-level product area.
-6. Other drill-like exercises should likewise live inside the per-surah workbook.
-7. The system must make its vocabulary identity rule explicit (for example lemma, root, normalized surface form, or more than one view) rather than silently mixing definitions.
-8. Derived counts must be reproducible from source data and code. Numbers should not live only in chat memory.
+Truth boundary: 3,307 QAC STEM rows lack `LEM:`. The product must not invent canonical lemmas for those rows. Function/grammar material outside the QAC lemma-bearing lexical layer needs an explicitly separate identity model if it is counted as learned vocabulary.
 
-## Required Surah Metrics
+## Verified Corpus Integrity
 
-For each surah in the study sequence, compute at minimum:
+- Qur'anic orthographic word positions: **77,429**
+- QAC morphology segment rows: **128,219**
+- QAC STEM rows: **77,915**
+- Canonical lemma-bearing vocabulary inventory: **4,832**
+- Distinct roots: **1,642**
 
-- total word tokens
-- distinct normalized surface forms, if retained
-- distinct lemmas
-- distinct roots
-- lemmas already seen in previously studied surahs
-- lemmas new in this surah
-- roots already seen in previously studied surahs
-- roots new in this surah
-- cumulative distinct lemmas learned through this day
-- cumulative distinct roots learned through this day
+## Verified Al-Baqarah Benchmark
 
-The UI must clearly label which metric is being shown. “Words” is too ambiguous on its own.
+Al-Baqarah is Day 113. Its known-before set contains Surahs 114→3; Al-Fatihah is not included.
 
-## Surah al-Baqarah Benchmark
+- Distinct canonical vocabulary items in Al-Baqarah: **1,136**
+- Already learned: **991**
+- **New vocabulary: 145**
+- Known vocabulary before Al-Baqarah: **4,686**
+- Known vocabulary after Al-Baqarah: **4,831**
+- Distinct roots in Al-Baqarah: **585**
+- Already encountered roots: **563**
+- **New roots: 22**
+- QAC lemma-bearing lexical word tokens measured: **5,835**
+- Covered entirely by previously learned vocabulary: **5,656**
+- Previously learned lexical-token coverage: **96.9323%**
 
-When Surah 2 is reached, the already-studied set is Surahs 114 through 3.
+The separate raw-STEM diagnostic is 523 new surface forms. **523 is not the new-vocabulary count.**
 
-Therefore:
+On Day 114, Al-Fatihah adds exactly **1** new canonical vocabulary item and **0** new roots, bringing the full totals to 4,832 vocabulary items and 1,642 roots.
 
-new_lemmas_in_2 = lemmas(Surah 2) − union(lemmas(Surahs 3..114))
+## Product Architecture — Workbook Is the Learning Product
 
-new_roots_in_2 = roots(Surah 2) − union(roots(Surahs 3..114))
+The Workbook is not a container for drills alone. The current surah/day is the organizing axis for every capability that helps the learner acquire and use vocabulary.
 
-The answer must report both the count and the actual items so it can be audited.
+Each surah Workbook must contain or contextually expose:
 
-## Workbook Structure
+1. Orient — day/surah, cumulative progress, known-before/new-today state.
+2. Read — full surah context, known vocabulary subdued and new vocabulary emphasized.
+3. Learn — today's genuinely new vocabulary with meanings/explanations.
+4. Roots & Families — root relationships relevant to current vocabulary and previously learned forms.
+5. Forms / Morphology — attested forms and the morphological relationships that matter to the current vocabulary.
+6. Compare — semantic neighbors, opposites, near-synonyms, lookalikes, and distinctions relevant to the current lesson.
+7. Concordance / In Context — occurrences and verse context, clearly distinguishing already-studied evidence from future/reference evidence.
+8. Practice — recognition, recall, root-family, morphology, semantic distinction, context, and returning-word exercises.
+9. Review — cumulative/spaced retrieval of vocabulary from previous study days.
+10. Complete — record/confirm the day's completion and advance to the next surah.
 
-Each surah should have one workbook containing the learning material and exercises for that surah. Suggested internal sections:
+A learner should not need to leave the current Workbook to understand, relate, find, compare, or practice a current vocabulary item.
 
-1. Surah overview
-2. New vocabulary for this day
-3. Previously learned vocabulary appearing again
-4. Root families / morphology where useful
-5. Recognition drills
-6. Recall drills
-7. Matching / multiple-choice exercises
-8. Verse-context exercises
-9. Review of high-frequency items
-10. Answer key / explanations
+Roots, Forms, Concordance, Compare, Drills, and the word-detail experience are therefore Workbook capabilities, not disconnected primary learning destinations.
 
-This is a structural requirement, not a final pedagogical design; exercises can evolve without recreating a separate global drills product.
+## Current Site Limitation
+
+The live/static application still contains Juz 'Amma-era assumptions and handcrafted `WORDS`-driven counts. The generated corpus calculation is correct and stored, but the UI has not yet been refactored to consume it.
+
+## Remaining Work
+
+1. Wire `data/generated/cumulative-vocabulary.json` into the application so all displayed cumulative counts come from the verified full-corpus model.
+2. Expand the surah/day experience to all 114 surahs.
+3. Rebuild navigation around the per-surah Workbook architecture above.
+4. Move Roots, Forms, Concordance, Compare, Drills, and contextual word-detail learning into each current-surah Workbook.
+5. Keep handcrafted teaching annotations as enrichment only; never let annotation completeness drive exhaustive corpus claims.
+6. Decide and implement the separately labeled grammar/function-word learning layer for QAC STEMs without canonical `LEM:` where pedagogically useful.
+7. Surface source/provenance and metric definitions in a compact defensible way.
+8. Add UI/regression tests that ensure displayed counts match generated data.
 
 ## Source-of-Truth Rule
 
-Project requirements, calculation definitions, source datasets, derived outputs, and unresolved questions must be committed to the repository or represented in Linear. Chat memory is not a sufficient source of truth.
-
-## Open Work
-
-- Select and pin the canonical full-Qur'an morphology/lexicon dataset.
-- Implement a reproducible full-Qur'an calculation pipeline.
-- Produce per-surah cumulative/new lemma and root data for all 114 surahs.
-- Verify the Surah 2 benchmark: unseen vocabulary after studying Surahs 114→3.
-- Replace Juz 'Amma-only calculations in the site.
-- Refactor workbook/drills into a per-surah workbook model.
-- Expose enough provenance in the UI/data so counts can be audited.
-- Add regression tests for known surah counts and cumulative behavior.
-
-## Definition of Done for the Calculation Rewrite
-
-The calculation work is complete only when:
-
-- all 114 surahs are included;
-- the reverse-surah study sequence is deterministic;
-- lemma/root identity rules are documented;
-- all derived counts can be regenerated from a pinned source dataset;
-- Surah 2's new vocabulary after Surahs 3–114 is available as both counts and item lists;
-- automated tests catch regressions;
-- the site consumes generated full-Qur'an data rather than hand-entered/Juz 'Amma-only assumptions.
+Repo docs + generated data are durable product truth. Linear is the durable execution queue. Chat memory is convenience only.
 
 ## Handoff to Power
 
-Power should read this file first for project intent and current state. For exact computation rules and data-contract expectations, read `docs/CALCULATION_SPEC.md`.
+Read in this order:
+
+1. `docs/PROJECT_STATE.md`
+2. `docs/CALCULATION_SPEC.md`
+3. `docs/CALCULATION_RESULTS.md`
+4. Linear project `Cumulative Qur'anic Lexicon`
+
+Do not reconstruct or estimate cumulative vocabulary counts from the UI's handcrafted `WORDS` data.
