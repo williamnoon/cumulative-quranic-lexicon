@@ -1,0 +1,64 @@
+name: Build cumulative Quran vocabulary
+
+on:
+  push:
+    branches:
+      - williamdeval/net-61-full-corpus-calculation
+    paths:
+      - 'scripts/build_cumulative_vocab.py'
+      - '.github/workflows/build-cumulative-vocabulary.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download pinned Quranic Arabic Corpus v0.4
+        run: |
+          mkdir -p .cache/qac
+          curl --fail --location --retry 3 \
+            'https://raw.githubusercontent.com/bnjasim/quranic-corpus/master/quranic-corpus-morphology-0.4.txt' \
+            --output .cache/qac/quranic-corpus-morphology-0.4.txt
+          test "$(git ls-remote https://github.com/bnjasim/quranic-corpus.git refs/heads/master | cut -f1)" != ""
+
+      - name: Calculate all 114 study days
+        run: |
+          python scripts/build_cumulative_vocab.py \
+            --source .cache/qac/quranic-corpus-morphology-0.4.txt \
+            --out-dir data/generated
+
+      - name: Validate generated results
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/generated/cumulative-vocabulary.json').read_text())
+          assert len(d['days']) == 114
+          assert [x['surah'] for x in d['days']] == list(range(114,0,-1))
+          assert d['days'][0]['new_learning_units'] == d['days'][0]['distinct_learning_units']
+          assert d['days'][112]['surah'] == 2
+          assert d['days'][113]['surah'] == 1
+          assert d['metadata']['parsed_segment_rows'] > 120000
+          assert d['metadata']['parsed_stem_rows'] > 70000
+          assert d['metadata']['orthographic_word_positions'] > 77000
+          print(Path('data/generated/summary.json').read_text())
+          PY
+
+      - name: Store generated corpus calculations on branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- data/generated/cumulative-vocabulary.json data/generated/cumulative-vocabulary.csv data/generated/baqarah-day-113.json data/generated/summary.json
+          if git diff --cached --quiet; then
+            echo 'Generated data already current.'
+          else
+            git commit -m 'data: generate 114-day cumulative Quran vocabulary'
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
