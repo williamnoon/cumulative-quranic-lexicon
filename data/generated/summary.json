@@ -1,8 +1,6 @@
 {
   "whole_quran": {
     "orthographic_word_positions": 77429,
-    "lexical_stem_rows": 77915,
-    "stems_missing_lemma": 3307,
     "canonical_vocabulary_items": 4832,
     "roots": 1642
   },
@@ -19,9 +17,6 @@
     "known_lexical_word_tokens": 5656,
     "new_lexical_word_tokens": 179,
     "known_lexical_word_token_coverage_pct": 96.9323,
-    "lexical_stem_occurrences": 5884,
-    "known_lexical_stem_occurrences": 5705,
-    "new_lexical_stem_occurrences": 179,
     "distinct_roots": 585,
     "carried_roots": 563,
     "new_roots": 22,
@@ -32,6 +27,8 @@
     "new_raw_stem_forms": 523,
     "known_before_raw_stem_forms": 11586,
     "known_after_raw_stem_forms": 12109,
-    "benchmark": "Surah 2 on Day 113 after studying Surahs 114 through 3; Surah 1 is excluded from known-before"
+    "new_vocabulary_with_new_root_count": 23,
+    "new_vocabulary_with_known_root_count": 112,
+    "new_vocabulary_without_root_count": 10
   }
 }

@@ -7,16 +7,7 @@
       "path": "quranic-corpus-morphology-0.4.txt",
       "blob_sha": "b91cec6e95d5e0306550b4aedacc7380dc71152a",
       "download_url": "https://raw.githubusercontent.com/bnjasim/quranic-corpus/master/quranic-corpus-morphology-0.4.txt",
-      "download_sha256": "a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46",
-      "license": "GPL; Quranic Arabic Corpus © Kais Dukes 2009-2017"
-    },
-    "calculation": {
-      "primary_vocabulary_identity": "QAC STEM segment LEM value (exact extended-Buckwalter canonical lemma)",
-      "why": "QAC lemmas group inflectional variants; derivationally distinct vocabulary, including derived verb forms, uses distinct canonical lemmas",
-      "known_before": "union of canonical vocabulary items from earlier study days (higher-numbered surahs)",
-      "new_today": "vocab(current surah) minus known-before; Surah 1 is not in the known set on Day 113",
-      "root_metric": "exact QAC ROOT values on STEM segments, independently accumulated",
-      "raw_stem_metric": "supplementary diagnostic only; not the product vocabulary count"
+      "download_sha256": "a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46"
     },
     "parsed_segment_rows": 128219,
     "parsed_stem_rows": 77915,
@@ -36,9 +27,6 @@
     "known_lexical_word_tokens": 5656,
     "new_lexical_word_tokens": 179,
     "known_lexical_word_token_coverage_pct": 96.9323,
-    "lexical_stem_occurrences": 5884,
-    "known_lexical_stem_occurrences": 5705,
-    "new_lexical_stem_occurrences": 179,
     "distinct_roots": 585,
     "carried_roots": 563,
     "new_roots": 22,
@@ -721,6 +709,1546 @@
         "arabic": "زود"
       }
     ],
-    "benchmark": "Surah 2 on Day 113 after studying Surahs 114 through 3; Surah 1 is excluded from known-before"
+    "new_vocabulary_with_new_root_count": 23,
+    "new_vocabulary_with_known_root_count": 112,
+    "new_vocabulary_without_root_count": 10,
+    "new_vocabulary_root_novelty_map": [
+      {
+        "lemma_buckwalter": "$aTor",
+        "lemma_arabic": "شَطْر",
+        "roots": [
+          {
+            "buckwalter": "$Tr",
+            "arabic": "شطر",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "$iyap",
+        "lemma_arabic": "شِيَة",
+        "roots": [
+          {
+            "buckwalter": "w$y",
+            "arabic": "وشي",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "<iEoSaAr",
+        "lemma_arabic": "إِعْصَار",
+        "roots": [
+          {
+            "buckwalter": "ESr",
+            "arabic": "عصر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "<iloHaAf",
+        "lemma_arabic": "إِلْحَاف",
+        "roots": [
+          {
+            "buckwalter": "lHf",
+            "arabic": "لحف",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "<imosaAk",
+        "lemma_arabic": "إِمْسَاك",
+        "roots": [
+          {
+            "buckwalter": "msk",
+            "arabic": "مسك",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">aEonata",
+        "lemma_arabic": "أَعْنَتَ",
+        "roots": [
+          {
+            "buckwalter": "Ent",
+            "arabic": "عنت",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">aHoraS",
+        "lemma_arabic": "أَحْرَص",
+        "roots": [
+          {
+            "buckwalter": "HrS",
+            "arabic": "حرص",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">aZolama",
+        "lemma_arabic": "أَظْلَمَ",
+        "roots": [
+          {
+            "buckwalter": "Zlm",
+            "arabic": "ظلم",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">adaA^'",
+        "lemma_arabic": "أَدَآء",
+        "roots": [
+          {
+            "buckwalter": "Ady",
+            "arabic": "ادي",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">ahil~ap",
+        "lemma_arabic": "أَهِلَّة",
+        "roots": [
+          {
+            "buckwalter": "hll",
+            "arabic": "هلل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">alad~",
+        "lemma_arabic": "أَلَدّ",
+        "roots": [
+          {
+            "buckwalter": "ldd",
+            "arabic": "لدد",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">asowad",
+        "lemma_arabic": "أَسْوَد",
+        "roots": [
+          {
+            "buckwalter": "swd",
+            "arabic": "سود",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">azal~a",
+        "lemma_arabic": "أَزَلَّ",
+        "roots": [
+          {
+            "buckwalter": "zll",
+            "arabic": "زلل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">u$oribu",
+        "lemma_arabic": "أُشْرِبُ",
+        "roots": [
+          {
+            "buckwalter": "$rb",
+            "arabic": "شرب",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": ">uHoSiru",
+        "lemma_arabic": "أُحْصِرُ",
+        "roots": [
+          {
+            "buckwalter": "HSr",
+            "arabic": "حصر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Eadas",
+        "lemma_arabic": "عَدَس",
+        "roots": [
+          {
+            "buckwalter": "Eds",
+            "arabic": "عدس",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Earafa`t",
+        "lemma_arabic": "عَرَفَٰت",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "Ear~aDo",
+        "lemma_arabic": "عَرَّضْ",
+        "roots": [
+          {
+            "buckwalter": "ErD",
+            "arabic": "عرض",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "EawaAn",
+        "lemma_arabic": "عَوَان",
+        "roots": [
+          {
+            "buckwalter": "Ewn",
+            "arabic": "عون",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Eumorap",
+        "lemma_arabic": "عُمْرَة",
+        "roots": [
+          {
+            "buckwalter": "Emr",
+            "arabic": "عمر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "EuroDap",
+        "lemma_arabic": "عُرْضَة",
+        "roots": [
+          {
+            "buckwalter": "ErD",
+            "arabic": "عرض",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Ha*ar",
+        "lemma_arabic": "حَذَر",
+        "roots": [
+          {
+            "buckwalter": "H*r",
+            "arabic": "حذر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "HaADiriY",
+        "lemma_arabic": "حَاضِرِى",
+        "roots": [
+          {
+            "buckwalter": "HDr",
+            "arabic": "حضر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Haj~a",
+        "lemma_arabic": "حَجَّ",
+        "roots": [
+          {
+            "buckwalter": "Hjj",
+            "arabic": "حجج",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Hasad",
+        "lemma_arabic": "حَسَد",
+        "roots": [
+          {
+            "buckwalter": "Hsd",
+            "arabic": "حسد",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Hayov2",
+        "lemma_arabic": "حَيْث2",
+        "roots": [
+          {
+            "buckwalter": "Hyv",
+            "arabic": "حيث",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Huk~aAm",
+        "lemma_arabic": "حُكَّام",
+        "roots": [
+          {
+            "buckwalter": "Hkm",
+            "arabic": "حكم",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Hur~",
+        "lemma_arabic": "حُرّ",
+        "roots": [
+          {
+            "buckwalter": "Hrr",
+            "arabic": "حرر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "SaforaA^'",
+        "lemma_arabic": "صَفْرَآء",
+        "roots": [
+          {
+            "buckwalter": "Sfr",
+            "arabic": "صفر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "SafowaAn",
+        "lemma_arabic": "صَفْوَان",
+        "roots": [
+          {
+            "buckwalter": "Sfw",
+            "arabic": "صفو",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Salod",
+        "lemma_arabic": "صَلْد",
+        "roots": [
+          {
+            "buckwalter": "Sld",
+            "arabic": "صلد",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Say~ib",
+        "lemma_arabic": "صَيِّب",
+        "roots": [
+          {
+            "buckwalter": "Swb",
+            "arabic": "صوب",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Sibogap",
+        "lemma_arabic": "صِبْغَة",
+        "roots": [
+          {
+            "buckwalter": "Sbg",
+            "arabic": "صبغ",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Suro",
+        "lemma_arabic": "صُرْ",
+        "roots": [
+          {
+            "buckwalter": "Swr",
+            "arabic": "صور",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "S~afaA",
+        "lemma_arabic": "صَّفَا",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "TaAluwt",
+        "lemma_arabic": "طَالُوت",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "TaAqap",
+        "lemma_arabic": "طَاقَة",
+        "roots": [
+          {
+            "buckwalter": "Twq",
+            "arabic": "طوق",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "Tal~",
+        "lemma_arabic": "طَلّ",
+        "roots": [
+          {
+            "buckwalter": "Tll",
+            "arabic": "طلل",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "T~ala`q",
+        "lemma_arabic": "طَّلَٰق",
+        "roots": [
+          {
+            "buckwalter": "Tlq",
+            "arabic": "طلق",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "baAbil",
+        "lemma_arabic": "بَابِل",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "baEuwDap",
+        "lemma_arabic": "بَعُوضَة",
+        "roots": [
+          {
+            "buckwalter": "bED",
+            "arabic": "بعض",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "baSal",
+        "lemma_arabic": "بَصَل",
+        "roots": [
+          {
+            "buckwalter": "bSl",
+            "arabic": "بصل",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "ba`$iru",
+        "lemma_arabic": "بَٰشِرُ",
+        "roots": [
+          {
+            "buckwalter": "b$r",
+            "arabic": "بشر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "baqarap",
+        "lemma_arabic": "بَقَرَة",
+        "roots": [
+          {
+            "buckwalter": "bqr",
+            "arabic": "بقر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "baqol",
+        "lemma_arabic": "بَقْل",
+        "roots": [
+          {
+            "buckwalter": "bql",
+            "arabic": "بقل",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "faAqiE",
+        "lemma_arabic": "فَاقِع",
+        "roots": [
+          {
+            "buckwalter": "fqE",
+            "arabic": "فقع",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "faAriD",
+        "lemma_arabic": "فَارِض",
+        "roots": [
+          {
+            "buckwalter": "frD",
+            "arabic": "فرض",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "faqor",
+        "lemma_arabic": "فَقْر",
+        "roots": [
+          {
+            "buckwalter": "fqr",
+            "arabic": "فقر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "fuwm",
+        "lemma_arabic": "فُوم",
+        "roots": [
+          {
+            "buckwalter": "fwm",
+            "arabic": "فوم",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "guforaAn",
+        "lemma_arabic": "غُفْرَان",
+        "roots": [
+          {
+            "buckwalter": "gfr",
+            "arabic": "غفر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "ha`ruwt",
+        "lemma_arabic": "هَٰرُوت",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "huwd2",
+        "lemma_arabic": "هُود2",
+        "roots": [
+          {
+            "buckwalter": "hwd",
+            "arabic": "هود",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "jaAluwt",
+        "lemma_arabic": "جَالُوت",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "janaf",
+        "lemma_arabic": "جَنَف",
+        "roots": [
+          {
+            "buckwalter": "jnf",
+            "arabic": "جنف",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "kaAmilayon",
+        "lemma_arabic": "كَامِلَيْن",
+        "roots": [
+          {
+            "buckwalter": "kml",
+            "arabic": "كمل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "l~a`Einuwn",
+        "lemma_arabic": "لَّٰعِنُون",
+        "roots": [
+          {
+            "buckwalter": "lEn",
+            "arabic": "لعن",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "ma$oEar",
+        "lemma_arabic": "مَشْعَر",
+        "roots": [
+          {
+            "buckwalter": "$Er",
+            "arabic": "شعر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "ma`ruwt",
+        "lemma_arabic": "مَٰرُوت",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "marowap",
+        "lemma_arabic": "مَرْوَة",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "mavaAbap",
+        "lemma_arabic": "مَثَابَة",
+        "roots": [
+          {
+            "buckwalter": "vwb",
+            "arabic": "ثوب",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "mayosarap",
+        "lemma_arabic": "مَيْسَرَة",
+        "roots": [
+          {
+            "buckwalter": "ysr",
+            "arabic": "يسر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "miykaY`l",
+        "lemma_arabic": "مِيكَىٰل",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "muSal~FY",
+        "lemma_arabic": "مُصَلًّى",
+        "roots": [
+          {
+            "buckwalter": "Slw",
+            "arabic": "صلو",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "muTal~aqa`t",
+        "lemma_arabic": "مُطَلَّقَٰت",
+        "roots": [
+          {
+            "buckwalter": "Tlq",
+            "arabic": "طلق",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "muqotir",
+        "lemma_arabic": "مُقْتِر",
+        "roots": [
+          {
+            "buckwalter": "qtr",
+            "arabic": "قتر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "musax~ar",
+        "lemma_arabic": "مُسَخَّر",
+        "roots": [
+          {
+            "buckwalter": "sxr",
+            "arabic": "سخر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "mutaTah~iriyn",
+        "lemma_arabic": "مُتَطَهِّرِين",
+        "roots": [
+          {
+            "buckwalter": "Thr",
+            "arabic": "طهر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "muwal~iy",
+        "lemma_arabic": "مُوَلِّي",
+        "roots": [
+          {
+            "buckwalter": "wly",
+            "arabic": "ولي",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "muwfuwn",
+        "lemma_arabic": "مُوفُون",
+        "roots": [
+          {
+            "buckwalter": "wfy",
+            "arabic": "وفي",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "muzaHoziH",
+        "lemma_arabic": "مُزَحْزِح",
+        "roots": [
+          {
+            "buckwalter": "zHzH",
+            "arabic": "زحزح",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "m~aqobuwDap",
+        "lemma_arabic": "مَّقْبُوضَة",
+        "roots": [
+          {
+            "buckwalter": "qbD",
+            "arabic": "قبض",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "m~usolimap",
+        "lemma_arabic": "مُّسْلِمَة",
+        "roots": [
+          {
+            "buckwalter": "slm",
+            "arabic": "سلم",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "m~uwS",
+        "lemma_arabic": "مُّوص",
+        "roots": [
+          {
+            "buckwalter": "wSy",
+            "arabic": "وصي",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "naZirap",
+        "lemma_arabic": "نَظِرَة",
+        "roots": [
+          {
+            "buckwalter": "nZr",
+            "arabic": "نظر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "nun$izu",
+        "lemma_arabic": "نُنشِزُ",
+        "roots": [
+          {
+            "buckwalter": "n$z",
+            "arabic": "نشز",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "nuqad~isu",
+        "lemma_arabic": "نُقَدِّسُ",
+        "roots": [
+          {
+            "buckwalter": "qds",
+            "arabic": "قدس",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "qaliylap",
+        "lemma_arabic": "قَلِيلَة",
+        "roots": [
+          {
+            "buckwalter": "qll",
+            "arabic": "قلل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "qasowap",
+        "lemma_arabic": "قَسْوَة",
+        "roots": [
+          {
+            "buckwalter": "qsw",
+            "arabic": "قسو",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "qatolaY",
+        "lemma_arabic": "قَتْلَى",
+        "roots": [
+          {
+            "buckwalter": "qtl",
+            "arabic": "قتل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "qiv~aA^}",
+        "lemma_arabic": "قِثَّآئ",
+        "roots": [
+          {
+            "buckwalter": "qvA",
+            "arabic": "قثا",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "quruw^'",
+        "lemma_arabic": "قُرُوٓء",
+        "roots": [
+          {
+            "buckwalter": "qrA",
+            "arabic": "قرا",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "rabiHat",
+        "lemma_arabic": "رَبِحَت",
+        "roots": [
+          {
+            "buckwalter": "rbH",
+            "arabic": "ربح",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "rafav",
+        "lemma_arabic": "رَفَث",
+        "roots": [
+          {
+            "buckwalter": "rfv",
+            "arabic": "رفث",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "ramaDaAn",
+        "lemma_arabic": "رَمَضَان",
+        "roots": []
+      },
+      {
+        "lemma_buckwalter": "riha`n",
+        "lemma_arabic": "رِهَٰن",
+        "roots": [
+          {
+            "buckwalter": "rhn",
+            "arabic": "رهن",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "rukobaAn",
+        "lemma_arabic": "رُكْبَان",
+        "roots": [
+          {
+            "buckwalter": "rkb",
+            "arabic": "ركب",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "safiha",
+        "lemma_arabic": "سَفِهَ",
+        "roots": [
+          {
+            "buckwalter": "sfh",
+            "arabic": "سفه",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "sinap",
+        "lemma_arabic": "سِنَة",
+        "roots": [
+          {
+            "buckwalter": "wsn",
+            "arabic": "وسن",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "sunbulap",
+        "lemma_arabic": "سُنبُلَة",
+        "roots": [
+          {
+            "buckwalter": "snbl",
+            "arabic": "سنبل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "s~ilom",
+        "lemma_arabic": "سِّلْم",
+        "roots": [
+          {
+            "buckwalter": "slm",
+            "arabic": "سلم",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "ta$aAwur",
+        "lemma_arabic": "تَشَاوُر",
+        "roots": [
+          {
+            "buckwalter": "$wr",
+            "arabic": "شور",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "taEaj~ala",
+        "lemma_arabic": "تَعَجَّلَ",
+        "roots": [
+          {
+            "buckwalter": "Ejl",
+            "arabic": "عجل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "taHoliqu",
+        "lemma_arabic": "تَحْلِقُ",
+        "roots": [
+          {
+            "buckwalter": "Hlq",
+            "arabic": "حلق",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "taTaw~aEa",
+        "lemma_arabic": "تَطَوَّعَ",
+        "roots": [
+          {
+            "buckwalter": "TwE",
+            "arabic": "طوع",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tabaAyaEo",
+        "lemma_arabic": "تَبَايَعْ",
+        "roots": [
+          {
+            "buckwalter": "byE",
+            "arabic": "بيع",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tadaAyan",
+        "lemma_arabic": "تَدَايَن",
+        "roots": [
+          {
+            "buckwalter": "dyn",
+            "arabic": "دين",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tarab~uS",
+        "lemma_arabic": "تَرَبُّص",
+        "roots": [
+          {
+            "buckwalter": "rbS",
+            "arabic": "ربص",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tasoriyH",
+        "lemma_arabic": "تَسْرِيح",
+        "roots": [
+          {
+            "buckwalter": "srH",
+            "arabic": "سرح",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tasotaroDiEu",
+        "lemma_arabic": "تَسْتَرْضِعُ",
+        "roots": [
+          {
+            "buckwalter": "rDE",
+            "arabic": "رضع",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tasur~u",
+        "lemma_arabic": "تَسُرُّ",
+        "roots": [
+          {
+            "buckwalter": "srr",
+            "arabic": "سرر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "taxofiyf",
+        "lemma_arabic": "تَخْفِيف",
+        "roots": [
+          {
+            "buckwalter": "xff",
+            "arabic": "خفف",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tazaw~adu",
+        "lemma_arabic": "تَزَوَّدُ",
+        "roots": [
+          {
+            "buckwalter": "zwd",
+            "arabic": "زود",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tilaAwat",
+        "lemma_arabic": "تِلَاوَت",
+        "roots": [
+          {
+            "buckwalter": "tlw",
+            "arabic": "تلو",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tudiyru",
+        "lemma_arabic": "تُدِيرُ",
+        "roots": [
+          {
+            "buckwalter": "dwr",
+            "arabic": "دور",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tufa`du",
+        "lemma_arabic": "تُفَٰدُ",
+        "roots": [
+          {
+            "buckwalter": "fdy",
+            "arabic": "فدي",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tugomiDu",
+        "lemma_arabic": "تُغْمِضُ",
+        "roots": [
+          {
+            "buckwalter": "gmD",
+            "arabic": "غمض",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "tuxaAliTu",
+        "lemma_arabic": "تُخَالِطُ",
+        "roots": [
+          {
+            "buckwalter": "xlT",
+            "arabic": "خلط",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "t~aEaf~uf",
+        "lemma_arabic": "تَّعَفُّف",
+        "roots": [
+          {
+            "buckwalter": "Eff",
+            "arabic": "عفف",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "t~aholukap",
+        "lemma_arabic": "تَّهْلُكَة",
+        "roots": [
+          {
+            "buckwalter": "hlk",
+            "arabic": "هلك",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "vamarap",
+        "lemma_arabic": "ثَمَرَة",
+        "roots": [
+          {
+            "buckwalter": "vmr",
+            "arabic": "ثمر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "waAbil",
+        "lemma_arabic": "وَابِل",
+        "roots": [
+          {
+            "buckwalter": "wbl",
+            "arabic": "وبل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "wa`lida`t",
+        "lemma_arabic": "وَٰلِدَٰت",
+        "roots": [
+          {
+            "buckwalter": "wld",
+            "arabic": "ولد",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "wasaT",
+        "lemma_arabic": "وَسَط",
+        "roots": [
+          {
+            "buckwalter": "wsT",
+            "arabic": "وسط",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "wijohap",
+        "lemma_arabic": "وِجْهَة",
+        "roots": [
+          {
+            "buckwalter": "wjh",
+            "arabic": "وجه",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "wusoTaY`",
+        "lemma_arabic": "وُسْطَىٰ",
+        "roots": [
+          {
+            "buckwalter": "wsT",
+            "arabic": "وسط",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "xaraAb",
+        "lemma_arabic": "خَرَاب",
+        "roots": [
+          {
+            "buckwalter": "xrb",
+            "arabic": "خرب",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "xayoT",
+        "lemma_arabic": "خَيْط",
+        "roots": [
+          {
+            "buckwalter": "xyT",
+            "arabic": "خيط",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "xiTobap",
+        "lemma_arabic": "خِطْبَة",
+        "roots": [
+          {
+            "buckwalter": "xTb",
+            "arabic": "خطب",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "xul~ap",
+        "lemma_arabic": "خُلَّة",
+        "roots": [
+          {
+            "buckwalter": "xll",
+            "arabic": "خلل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yaSumo",
+        "lemma_arabic": "يَصُمْ",
+        "roots": [
+          {
+            "buckwalter": "Swm",
+            "arabic": "صوم",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yaTohuro",
+        "lemma_arabic": "يَطْهُرْ",
+        "roots": [
+          {
+            "buckwalter": "Thr",
+            "arabic": "طهر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "ya_#uwdu",
+        "lemma_arabic": "يَـُٔودُ",
+        "roots": [
+          {
+            "buckwalter": "Awd",
+            "arabic": "اود",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yanoEiqu",
+        "lemma_arabic": "يَنْعِقُ",
+        "roots": [
+          {
+            "buckwalter": "nEq",
+            "arabic": "نعق",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yaro$udu",
+        "lemma_arabic": "يَرْشُدُ",
+        "roots": [
+          {
+            "buckwalter": "r$d",
+            "arabic": "رشد",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yasofiku",
+        "lemma_arabic": "يَسْفِكُ",
+        "roots": [
+          {
+            "buckwalter": "sfk",
+            "arabic": "سفك",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yataEal~amu",
+        "lemma_arabic": "يَتَعَلَّمُ",
+        "roots": [
+          {
+            "buckwalter": "Elm",
+            "arabic": "علم",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yatafaj~aru",
+        "lemma_arabic": "يَتَفَجَّرُ",
+        "roots": [
+          {
+            "buckwalter": "fjr",
+            "arabic": "فجر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yataraAjaEa",
+        "lemma_arabic": "يَتَرَاجَعَ",
+        "roots": [
+          {
+            "buckwalter": "rjE",
+            "arabic": "رجع",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yatasan~aho",
+        "lemma_arabic": "يَتَسَنَّهْ",
+        "roots": [
+          {
+            "buckwalter": "snh",
+            "arabic": "سنه",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yataxab~aTu",
+        "lemma_arabic": "يَتَخَبَّطُ",
+        "roots": [
+          {
+            "buckwalter": "xbT",
+            "arabic": "خبط",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yu&olu",
+        "lemma_arabic": "يُؤْلُ",
+        "roots": [
+          {
+            "buckwalter": "Alw",
+            "arabic": "الو",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yuTiyqu",
+        "lemma_arabic": "يُطِيقُ",
+        "roots": [
+          {
+            "buckwalter": "Twq",
+            "arabic": "طوق",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yumil~a",
+        "lemma_arabic": "يُمِلَّ",
+        "roots": [
+          {
+            "buckwalter": "mll",
+            "arabic": "ملل",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "yuroDiEo",
+        "lemma_arabic": "يُرْضِعْ",
+        "roots": [
+          {
+            "buckwalter": "rDE",
+            "arabic": "رضع",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "z~aAd",
+        "lemma_arabic": "زَّاد",
+        "roots": [
+          {
+            "buckwalter": "zwd",
+            "arabic": "زود",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{&otumina",
+        "lemma_arabic": "ٱؤْتُمِنَ",
+        "roots": [
+          {
+            "buckwalter": "Amn",
+            "arabic": "امن",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{Eotamara",
+        "lemma_arabic": "ٱعْتَمَرَ",
+        "roots": [
+          {
+            "buckwalter": "Emr",
+            "arabic": "عمر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{Hotaraqato",
+        "lemma_arabic": "ٱحْتَرَقَتْ",
+        "roots": [
+          {
+            "buckwalter": "Hrq",
+            "arabic": "حرق",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{d~a`ra`#o",
+        "lemma_arabic": "ٱدَّٰرَْٰٔ",
+        "roots": [
+          {
+            "buckwalter": "drA",
+            "arabic": "درا",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{gotarafa",
+        "lemma_arabic": "ٱغْتَرَفَ",
+        "roots": [
+          {
+            "buckwalter": "grf",
+            "arabic": "غرف",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{nfajarato",
+        "lemma_arabic": "ٱنفَجَرَتْ",
+        "roots": [
+          {
+            "buckwalter": "fjr",
+            "arabic": "فجر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{nfiSaAm",
+        "lemma_arabic": "ٱنفِصَام",
+        "roots": [
+          {
+            "buckwalter": "fSm",
+            "arabic": "فصم",
+            "root_is_new": true
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{sotawoqada",
+        "lemma_arabic": "ٱسْتَوْقَدَ",
+        "roots": [
+          {
+            "buckwalter": "wqd",
+            "arabic": "وقد",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{sotayosara",
+        "lemma_arabic": "ٱسْتَيْسَرَ",
+        "roots": [
+          {
+            "buckwalter": "ysr",
+            "arabic": "يسر",
+            "root_is_new": false
+          }
+        ]
+      },
+      {
+        "lemma_buckwalter": "{t~ixaA*",
+        "lemma_arabic": "ٱتِّخَاذ",
+        "roots": [
+          {
+            "buckwalter": "Ax*",
+            "arabic": "اخذ",
+            "root_is_new": false
+          }
+        ]
+      }
+    ],
+    "benchmark": "Surah 2 Day 113 after Surahs 114 through 3"
   }
 }
