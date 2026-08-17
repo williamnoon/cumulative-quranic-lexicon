@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
-"""Build reverse-surah cumulative Qur'anic vocabulary metrics from QAC v0.4.
+"""Generate the 114-day reverse-surah cumulative Qur'anic vocabulary model.
 
-Study order: 114 -> 1.
+Canonical vocabulary identity
+=============================
+The primary learning unit is QAC's canonical LEM value on a STEM segment.
+This is the corpus' lexicon grouping: inflectional variants share a lemma,
+while derivationally different vocabulary (including derived verb forms) has a
+different canonical lemma. That matches the product rule: do not relearn mere
+inflection, but do learn a genuinely different lexical/morphological form.
 
-Primary learning-unit identity
-------------------------------
-The primary vocabulary unit is the normalized QAC STEM surface form. QAC splits
-an orthographic word into prefixes, a stem, and suffixes; using the STEM form
-keeps derivational/conjugational shapes distinct while not counting attached
-conjunctions, articles, prepositions, pronominal suffixes, or case/harakah
-variation as a brand-new lexical item. Arabic diacritics and Quranic annotation
-marks are removed for identity comparison, but the vocalized attested form is
-retained in the source corpus for audit.
+Study order is exactly 114 -> 1. For each day:
+    new_today = items(current_surah) - union(items(previous study days))
 
-Separate metrics are emitted for QAC-annotated lemmas and roots. QAC v0.4 does
-not provide a universal lemma for every stem category, so lemma counts are
-explicitly supplementary and are NOT the primary cumulative vocabulary claim.
+Roots are calculated separately. Raw stem spellings are retained only as a
+supplementary morphology diagnostic and never drive the primary vocabulary
+claim.
 """
 
 from __future__ import annotations
@@ -25,7 +24,6 @@ import csv
 import hashlib
 import json
 import re
-import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
@@ -38,21 +36,25 @@ SOURCE_VERSION = "Quranic Arabic Corpus v0.4"
 LOC_RE = re.compile(r"^\((\d+):(\d+):(\d+):(\d+)\)$")
 FEATURE_KV_RE = re.compile(r"(?:^|\|)(LEM|ROOT):([^|]+)")
 
+# Official/extended Buckwalter characters used by QAC/JQuranTree.
+BW_TO_AR = {
+    "'":"ء", ">":"أ", "&":"ؤ", "<":"إ", "}":"ئ", "A":"ا",
+    "b":"ب", "p":"ة", "t":"ت", "v":"ث", "j":"ج", "H":"ح",
+    "x":"خ", "d":"د", "*":"ذ", "r":"ر", "z":"ز", "s":"س",
+    "$":"ش", "S":"ص", "D":"ض", "T":"ط", "Z":"ظ", "E":"ع",
+    "g":"غ", "_":"ـ", "f":"ف", "q":"ق", "k":"ك", "l":"ل",
+    "m":"م", "n":"ن", "h":"ه", "w":"و", "Y":"ى", "y":"ي",
+    "F":"ً", "N":"ٌ", "K":"ٍ", "a":"َ", "u":"ُ", "i":"ِ",
+    "~":"ّ", "o":"ْ", "^":"ٓ", "#":"ٔ", "`":"ٰ", "{":"ٱ",
+    ":":"ۜ", "@":"۟", '"':"۠", "[":"ۢ", ";":"ۣ", ",":"ۥ",
+    ".":"ۦ", "!":"ۨ", "-":"۪", "+":"۫", "%":"۬", "]":"ۭ",
+}
 
-def normalize_arabic(text: str) -> str:
-    """Normalize for vocabulary identity without collapsing Arabic letters."""
-    text = unicodedata.normalize("NFKD", text)
-    out = []
-    for ch in text:
-        cp = ord(ch)
-        if unicodedata.combining(ch):
-            continue
-        if 0x0610 <= cp <= 0x061A or 0x064B <= cp <= 0x065F or 0x06D6 <= cp <= 0x06ED:
-            continue
-        if ch in {"ـ", "۞", "۩"}:
-            continue
-        out.append(ch)
-    return "".join(out).strip()
+
+def buckwalter_to_arabic(value: str | None) -> str | None:
+    if value is None:
+        return None
+    return "".join(BW_TO_AR.get(ch, ch) for ch in value)
 
 
 def extract_feature(features: str, key: str) -> str | None:
@@ -64,11 +66,13 @@ def extract_feature(features: str, key: str) -> str | None:
 
 def parse_qac(path: Path):
     stems_by_surah: dict[int, list[dict]] = defaultdict(list)
-    word_positions_by_surah: dict[int, set[tuple[int, int, int]]] = defaultdict(set)
+    all_words_by_surah: dict[int, set[tuple[int, int, int]]] = defaultdict(set)
     segment_count = 0
+    missing_lemma_stems = 0
 
     with path.open("r", encoding="utf-8") as fh:
-        reader = csv.reader(fh, delimiter="\t")
+        # quotechar is disabled because Buckwalter uses ASCII punctuation as data.
+        reader = csv.reader(fh, delimiter="\t", quoting=csv.QUOTE_NONE)
         for row in reader:
             if len(row) < 4:
                 continue
@@ -78,96 +82,114 @@ def parse_qac(path: Path):
                 continue
             surah, ayah, word_index, segment_index = map(int, match.groups())
             segment_count += 1
-            word_positions_by_surah[surah].add((surah, ayah, word_index))
+            word_key = (surah, ayah, word_index)
+            all_words_by_surah[surah].add(word_key)
 
             if not features.startswith("STEM|"):
                 continue
 
-            unit = normalize_arabic(form)
-            if not unit:
-                continue
             lemma = extract_feature(features, "LEM")
             root = extract_feature(features, "ROOT")
+            if not lemma:
+                missing_lemma_stems += 1
+
             stems_by_surah[surah].append({
                 "surah": surah,
                 "ayah": ayah,
                 "word_index": word_index,
                 "segment_index": segment_index,
-                "form": form,
-                "unit": unit,
+                "word_key": word_key,
+                "stem_form": form,
                 "tag": tag,
                 "features": features,
-                "lemma": normalize_arabic(lemma) if lemma else None,
-                "lemma_attested": lemma,
-                "root": normalize_arabic(root) if root else None,
-                "root_attested": root,
+                "lemma": lemma,
+                "root": root,
             })
 
-    return stems_by_surah, word_positions_by_surah, segment_count
+    return stems_by_surah, all_words_by_surah, segment_count, missing_lemma_stems
 
 
-def sorted_items(values):
-    return sorted(v for v in values if v)
+def display_items(values: set[str]):
+    return [
+        {"buckwalter": value, "arabic": buckwalter_to_arabic(value)}
+        for value in sorted(values)
+    ]
 
 
-def build(stems_by_surah, word_positions_by_surah):
-    known_units: set[str] = set()
-    known_lemmas: set[str] = set()
+def build(stems_by_surah, all_words_by_surah):
+    known_vocab: set[str] = set()
     known_roots: set[str] = set()
+    known_stems: set[str] = set()
     days = []
 
     for day, surah in enumerate(range(114, 0, -1), start=1):
         stems = stems_by_surah.get(surah, [])
-        unit_occurrences = [x["unit"] for x in stems]
-        units = set(unit_occurrences)
-        lemmas = {x["lemma"] for x in stems if x["lemma"]}
+        vocab_occurrences = [x["lemma"] for x in stems if x["lemma"]]
+        vocab = set(vocab_occurrences)
         roots = {x["root"] for x in stems if x["root"]}
+        raw_stems = {x["stem_form"] for x in stems}
 
-        new_units = units - known_units
-        carried_units = units & known_units
-        new_lemmas = lemmas - known_lemmas
-        carried_lemmas = lemmas & known_lemmas
+        new_vocab = vocab - known_vocab
+        carried_vocab = vocab & known_vocab
         new_roots = roots - known_roots
         carried_roots = roots & known_roots
+        new_stems = raw_stems - known_stems
+        carried_stems = raw_stems & known_stems
 
-        known_occurrences = sum(1 for u in unit_occurrences if u in known_units)
-        new_occurrences = len(unit_occurrences) - known_occurrences
-        stem_token_coverage = (known_occurrences / len(unit_occurrences) * 100.0) if unit_occurrences else 0.0
+        known_lexical_occurrences = sum(1 for x in vocab_occurrences if x in known_vocab)
+        new_lexical_occurrences = len(vocab_occurrences) - known_lexical_occurrences
 
-        known_before_unit_count = len(known_units)
-        known_before_lemma_count = len(known_lemmas)
-        known_before_root_count = len(known_roots)
+        # Orthographic-token coverage: a word is covered only when every lexical
+        # STEM lemma inside that word was known before today. This avoids double
+        # counting the small number of orthographic words with >1 STEM segment.
+        word_lemmas: dict[tuple[int, int, int], set[str]] = defaultdict(set)
+        for x in stems:
+            if x["lemma"]:
+                word_lemmas[x["word_key"]].add(x["lemma"])
+        lexical_word_tokens = len(word_lemmas)
+        known_word_tokens = sum(
+            1 for lemmas in word_lemmas.values()
+            if lemmas and lemmas.issubset(known_vocab)
+        )
+        new_word_tokens = lexical_word_tokens - known_word_tokens
+        coverage_pct = (known_word_tokens / lexical_word_tokens * 100.0) if lexical_word_tokens else 0.0
 
-        known_units |= units
-        known_lemmas |= lemmas
+        known_before_vocab = len(known_vocab)
+        known_before_roots = len(known_roots)
+        known_before_stems = len(known_stems)
+
+        known_vocab |= vocab
         known_roots |= roots
+        known_stems |= raw_stems
 
         days.append({
             "day": day,
             "surah": surah,
-            "orthographic_word_tokens": len(word_positions_by_surah.get(surah, set())),
-            "stem_occurrences": len(unit_occurrences),
-            "distinct_learning_units": len(units),
-            "carried_learning_units": len(carried_units),
-            "new_learning_units": len(new_units),
-            "known_before_learning_units": known_before_unit_count,
-            "known_after_learning_units": len(known_units),
-            "known_stem_occurrences": known_occurrences,
-            "new_stem_occurrences": new_occurrences,
-            "known_stem_token_coverage_pct": round(stem_token_coverage, 4),
-            "distinct_qac_annotated_lemmas": len(lemmas),
-            "carried_qac_annotated_lemmas": len(carried_lemmas),
-            "new_qac_annotated_lemmas": len(new_lemmas),
-            "known_before_qac_annotated_lemmas": known_before_lemma_count,
-            "known_after_qac_annotated_lemmas": len(known_lemmas),
+            "orthographic_word_tokens": len(all_words_by_surah.get(surah, set())),
+            "lexical_word_tokens": lexical_word_tokens,
+            "distinct_vocabulary_items": len(vocab),
+            "carried_vocabulary_items": len(carried_vocab),
+            "new_vocabulary_items": len(new_vocab),
+            "known_before_vocabulary_items": known_before_vocab,
+            "known_after_vocabulary_items": len(known_vocab),
+            "known_lexical_word_tokens": known_word_tokens,
+            "new_lexical_word_tokens": new_word_tokens,
+            "known_lexical_word_token_coverage_pct": round(coverage_pct, 4),
+            "lexical_stem_occurrences": len(vocab_occurrences),
+            "known_lexical_stem_occurrences": known_lexical_occurrences,
+            "new_lexical_stem_occurrences": new_lexical_occurrences,
             "distinct_roots": len(roots),
             "carried_roots": len(carried_roots),
             "new_roots": len(new_roots),
-            "known_before_roots": known_before_root_count,
+            "known_before_roots": known_before_roots,
             "known_after_roots": len(known_roots),
-            "new_learning_unit_items": sorted_items(new_units),
-            "new_qac_annotated_lemma_items": sorted_items(new_lemmas),
-            "new_root_items": sorted_items(new_roots),
+            "distinct_raw_stem_forms": len(raw_stems),
+            "carried_raw_stem_forms": len(carried_stems),
+            "new_raw_stem_forms": len(new_stems),
+            "known_before_raw_stem_forms": known_before_stems,
+            "known_after_raw_stem_forms": len(known_stems),
+            "new_vocabulary_item_list": display_items(new_vocab),
+            "new_root_list": display_items(new_roots),
         })
 
     return days
@@ -183,13 +205,14 @@ def sha256_file(path: Path) -> str:
 
 def write_csv(days, path: Path):
     fields = [
-        "day", "surah", "orthographic_word_tokens", "stem_occurrences",
-        "distinct_learning_units", "carried_learning_units", "new_learning_units",
-        "known_before_learning_units", "known_after_learning_units",
-        "known_stem_occurrences", "new_stem_occurrences", "known_stem_token_coverage_pct",
-        "distinct_qac_annotated_lemmas", "carried_qac_annotated_lemmas", "new_qac_annotated_lemmas",
-        "known_before_qac_annotated_lemmas", "known_after_qac_annotated_lemmas",
+        "day", "surah", "orthographic_word_tokens", "lexical_word_tokens",
+        "distinct_vocabulary_items", "carried_vocabulary_items", "new_vocabulary_items",
+        "known_before_vocabulary_items", "known_after_vocabulary_items",
+        "known_lexical_word_tokens", "new_lexical_word_tokens", "known_lexical_word_token_coverage_pct",
+        "lexical_stem_occurrences", "known_lexical_stem_occurrences", "new_lexical_stem_occurrences",
         "distinct_roots", "carried_roots", "new_roots", "known_before_roots", "known_after_roots",
+        "distinct_raw_stem_forms", "carried_raw_stem_forms", "new_raw_stem_forms",
+        "known_before_raw_stem_forms", "known_after_raw_stem_forms",
     ]
     with path.open("w", encoding="utf-8", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=fields)
@@ -203,15 +226,15 @@ def main():
     ap.add_argument("--source", required=True, type=Path)
     ap.add_argument("--out-dir", default=Path("data/generated"), type=Path)
     args = ap.parse_args()
-
     args.out_dir.mkdir(parents=True, exist_ok=True)
-    stems_by_surah, word_positions_by_surah, segment_count = parse_qac(args.source)
-    days = build(stems_by_surah, word_positions_by_surah)
+
+    stems_by_surah, all_words_by_surah, segment_count, missing_lemma_stems = parse_qac(args.source)
+    days = build(stems_by_surah, all_words_by_surah)
 
     assert len(days) == 114
-    assert days[0]["surah"] == 114 and days[-1]["surah"] == 1
-    assert days[0]["carried_learning_units"] == 0
-    assert days[0]["new_learning_units"] == days[0]["distinct_learning_units"]
+    assert [d["surah"] for d in days] == list(range(114, 0, -1))
+    assert days[0]["carried_vocabulary_items"] == 0
+    assert days[0]["new_vocabulary_items"] == days[0]["distinct_vocabulary_items"]
     assert days[112]["surah"] == 2 and days[113]["surah"] == 1
 
     metadata = {
@@ -226,36 +249,51 @@ def main():
             "license": "GPL; Quranic Arabic Corpus © Kais Dukes 2009-2017",
         },
         "calculation": {
-            "primary_learning_unit": "normalized QAC STEM surface form",
-            "normalization": "Unicode NFKD; remove Arabic combining/harakah/Quranic annotation marks and tatweel; preserve Arabic letters",
-            "known_before": "union of the same metric from earlier study days (higher-numbered surahs)",
-            "new_today": "current-surah set minus known-before set",
-            "lemma_warning": "QAC v0.4 lemma annotation is not universal across every stem category; lemma results are supplementary and not the primary vocabulary claim",
+            "primary_vocabulary_identity": "QAC STEM segment LEM value (exact extended-Buckwalter canonical lemma)",
+            "why": "QAC lemmas group inflectional variants; derivationally distinct vocabulary, including derived verb forms, uses distinct canonical lemmas",
+            "known_before": "union of canonical vocabulary items from earlier study days (higher-numbered surahs)",
+            "new_today": "vocab(current surah) minus known-before; Surah 1 is not in the known set on Day 113",
+            "root_metric": "exact QAC ROOT values on STEM segments, independently accumulated",
+            "raw_stem_metric": "supplementary diagnostic only; not the product vocabulary count",
         },
         "parsed_segment_rows": segment_count,
         "parsed_stem_rows": sum(len(v) for v in stems_by_surah.values()),
-        "orthographic_word_positions": sum(len(v) for v in word_positions_by_surah.values()),
+        "stems_missing_lemma": missing_lemma_stems,
+        "orthographic_word_positions": sum(len(v) for v in all_words_by_surah.values()),
     }
 
+    # Integrity checks anchored in this pinned source version.
+    assert metadata["parsed_segment_rows"] == 128219
+    assert metadata["orthographic_word_positions"] == 77429
+    assert days[-1]["known_after_vocabulary_items"] == 4832
+    assert days[-1]["known_after_roots"] == 1642
+
     full = {"metadata": metadata, "days": days}
-    (args.out_dir / "cumulative-vocabulary.json").write_text(json.dumps(full, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (args.out_dir / "cumulative-vocabulary.json").write_text(
+        json.dumps(full, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     write_csv(days, args.out_dir / "cumulative-vocabulary.csv")
 
     baqarah = days[112].copy()
-    baqarah["benchmark"] = "Surah 2 on Day 113 after studying Surahs 114 through 3; Surah 1 is not included in known-before"
-    (args.out_dir / "baqarah-day-113.json").write_text(json.dumps({"metadata": metadata, "result": baqarah}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    baqarah["benchmark"] = "Surah 2 on Day 113 after studying Surahs 114 through 3; Surah 1 is excluded from known-before"
+    (args.out_dir / "baqarah-day-113.json").write_text(
+        json.dumps({"metadata": metadata, "result": baqarah}, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
     summary = {
         "whole_quran": {
             "orthographic_word_positions": metadata["orthographic_word_positions"],
-            "stem_rows": metadata["parsed_stem_rows"],
-            "cumulative_learning_units": days[-1]["known_after_learning_units"],
-            "cumulative_qac_annotated_lemmas": days[-1]["known_after_qac_annotated_lemmas"],
-            "cumulative_roots": days[-1]["known_after_roots"],
+            "lexical_stem_rows": metadata["parsed_stem_rows"],
+            "stems_missing_lemma": metadata["stems_missing_lemma"],
+            "canonical_vocabulary_items": days[-1]["known_after_vocabulary_items"],
+            "roots": days[-1]["known_after_roots"],
         },
-        "baqarah_day_113": {k: v for k, v in baqarah.items() if not k.endswith("_items")},
+        "baqarah_day_113": {k: v for k, v in baqarah.items() if not k.endswith("_list")},
     }
-    (args.out_dir / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (args.out_dir / "summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 
