@@ -22,58 +22,94 @@ Example for Surah 2:
 previously_studied = {3, 4, ..., 114}
 ```
 
-## Vocabulary Identities
+Surah 1 is not part of Al-Baqarah's known-before set because Al-Fatihah is studied on Day 114, after Al-Baqarah on Day 113.
 
-The pipeline should preserve distinct dimensions rather than collapse them into one ambiguous “word” count.
+## Pinned Source
 
-### Token
-An occurrence of a word in Qur'anic text.
+The calculation source is Quranic Arabic Corpus v0.4, pinned through the exact corpus blob:
 
-### Normalized surface form
-A normalized orthographic form. Normalization rules must be versioned if this metric is used.
+- repository: `bnjasim/quranic-corpus`
+- file: `quranic-corpus-morphology-0.4.txt`
+- blob SHA: `b91cec6e95d5e0306550b4aedacc7380dc71152a`
+- download SHA-256: `a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46`
 
-### Lemma
-The lexical headword assigned by the pinned morphology dataset.
+The generator must fail validation if the pinned corpus no longer reproduces the expected integrity counts.
+
+## Canonical Vocabulary Identity
+
+The primary vocabulary-learning identity is the exact QAC `LEM:` value on a `STEM` segment.
+
+Why this identity is used:
+
+- QAC canonical lemmas group forms that vary by inflection rather than treating every conjugated/case-marked spelling as a new vocabulary item.
+- Derivationally distinct lexical forms can have distinct canonical lemmas, preserving the morphology that matters for learning.
+- Roots remain available as a separate relationship dimension rather than being confused with lexical vocabulary.
+
+Therefore the product's primary cumulative labels should be:
+
+- Vocabulary items
+- New vocabulary
+- Previously learned vocabulary
+- Cumulative vocabulary
+
+with provenance explaining that these are QAC canonical lemma identities.
 
 ### Root
-The morphological root assigned by the pinned dataset.
 
-The product's primary “vocabulary learned” view should use a declared identity. Until a different decision is documented, generate both lemma and root metrics so the distinction remains visible.
+The exact QAC `ROOT:` value on a `STEM` segment. Root counts and novelty are always reported separately from vocabulary items.
+
+### Raw STEM form
+
+The QAC surface form of a `STEM` segment. This is retained as a supplementary morphology diagnostic only. It is not the primary cumulative vocabulary identity because inflectional variants would otherwise inflate the number of things a learner is said to need to learn.
+
+### Orthographic word token
+
+A Qur'anic word position identified by `(surah, ayah, word_index)`. QAC may split an orthographic word into multiple morphological segments.
+
+### Lexical word token
+
+An orthographic word position containing at least one `STEM` segment with a QAC `LEM:` assignment. Coverage percentages must explicitly state that they refer to this lemma-bearing lexical layer.
+
+## Missing-Lemma Truth Boundary
+
+The pinned QAC v0.4 source contains 77,915 `STEM` rows, of which 3,307 do not carry a `LEM:` assignment.
+
+The pipeline must not invent lemmas for those rows and must report the count. The canonical 4,832-item vocabulary inventory is specifically the QAC lemma-bearing lexical layer. If the product teaches function words, pronouns, or other grammatical material outside that layer, those items need a separately defined and labeled identity system.
 
 ## Per-Surah Set Definitions
 
 Let:
 
-- `L(S)` = set of distinct lemmas occurring in Surah S
-- `R(S)` = set of distinct roots occurring in Surah S
-- `T(S)` = total tokens in Surah S
+- `V(S)` = set of distinct QAC canonical `LEM:` values on `STEM` segments in Surah S
+- `R(S)` = set of distinct QAC `ROOT:` values on `STEM` segments in Surah S
+- `W(S)` = orthographic word positions in Surah S
 
 Previously seen sets:
 
 ```text
-seen_lemmas_before(S) = union(L(k) for k in S+1..114)
-seen_roots_before(S)  = union(R(k) for k in S+1..114)
+seen_vocab_before(S) = union(V(k) for k in S+1..114)
+seen_roots_before(S) = union(R(k) for k in S+1..114)
 ```
 
 New items:
 
 ```text
-new_lemmas(S) = L(S) - seen_lemmas_before(S)
-new_roots(S)  = R(S) - seen_roots_before(S)
+new_vocab(S) = V(S) - seen_vocab_before(S)
+new_roots(S) = R(S) - seen_roots_before(S)
 ```
 
-Review/known items:
+Carried/known items:
 
 ```text
-known_lemmas(S) = L(S) intersect seen_lemmas_before(S)
-known_roots(S)  = R(S) intersect seen_roots_before(S)
+carried_vocab(S) = V(S) intersect seen_vocab_before(S)
+carried_roots(S) = R(S) intersect seen_roots_before(S)
 ```
 
-Cumulative learned sets after studying S:
+Cumulative sets after studying S:
 
 ```text
-cumulative_lemmas_through(S) = union(L(k) for k in S..114)
-cumulative_roots_through(S)  = union(R(k) for k in S..114)
+cumulative_vocab_through(S) = union(V(k) for k in S..114)
+cumulative_roots_through(S) = union(R(k) for k in S..114)
 ```
 
 ## Surah 2 Required Benchmark
@@ -81,58 +117,46 @@ cumulative_roots_through(S)  = union(R(k) for k in S..114)
 Compute exactly:
 
 ```text
-L2_new = L(2) - union(L(k) for k in 3..114)
+V2_new = V(2) - union(V(k) for k in 3..114)
 R2_new = R(2) - union(R(k) for k in 3..114)
 ```
 
-Required output:
+Verified result from the pinned corpus:
 
-- `count(L2_new)`
-- sorted/auditable list of every lemma in `L2_new`
-- `count(R2_new)`
-- sorted/auditable list of every root in `R2_new`
-- source dataset/version/commit
-- calculation code version/commit
+- distinct vocabulary items in Surah 2: 1,136
+- carried vocabulary items: 991
+- **new vocabulary items: 145**
+- distinct roots: 585
+- carried roots: 563
+- **new roots: 22**
+- previously learned lexical-word-token coverage: **96.9323%** (5,656 of 5,835 measured lexical word tokens)
+
+The old/raw STEM diagnostic of 523 new surface forms is not the vocabulary result and must not be displayed as such.
+
+Required stored outputs:
+
+- count and auditable list of every new vocabulary item
+- count and auditable list of every new root
+- token-coverage metrics with their denominator clearly labeled
+- source dataset/version/blob
+- calculation code version
 
 The result must not be copied from chat or manually entered into the UI.
 
 ## Generated Data Contract
 
-Prefer a generated artifact such as:
+Canonical generated artifacts:
 
 ```text
-data/generated/surah-vocabulary.json
+data/generated/cumulative-vocabulary.json
+data/generated/cumulative-vocabulary.csv
+data/generated/baqarah-day-113.json
+data/generated/summary.json
 ```
 
-Suggested structure:
+`cumulative-vocabulary.csv` contains exactly one row per study day, 114 rows after the header, in the exact sequence 114→1.
 
-```json
-{
-  "source": {
-    "name": "...",
-    "version": "...",
-    "commit": "..."
-  },
-  "studyOrder": "114-to-1",
-  "surahs": {
-    "2": {
-      "tokenCount": 0,
-      "distinctLemmaCount": 0,
-      "distinctRootCount": 0,
-      "newLemmaCount": 0,
-      "newLemmas": [],
-      "knownLemmaCount": 0,
-      "newRootCount": 0,
-      "newRoots": [],
-      "knownRootCount": 0,
-      "cumulativeLemmaCount": 0,
-      "cumulativeRootCount": 0
-    }
-  }
-}
-```
-
-Exact schema may change, but generated counts and item lists must remain machine-readable.
+`cumulative-vocabulary.json` contains the same metrics plus machine-readable per-day lists of new vocabulary items and roots.
 
 ## Source Data Requirements
 
@@ -140,36 +164,44 @@ The canonical morphology source must:
 
 - cover all 114 surahs;
 - identify verse/word locations;
-- provide lemma data for lexical vocabulary calculations;
-- provide root data if root metrics are shown;
-- be pinned by a stable version or commit;
-- preserve licensing/provenance information.
-
-If the source has missing lemma/root assignments, the pipeline must report them instead of silently dropping them.
+- provide canonical lemma values for lexical vocabulary calculations;
+- provide root data for root metrics;
+- be pinned by an exact content identity;
+- preserve licensing/provenance information;
+- expose missing lemma/root assignments instead of silently dropping them from provenance.
 
 ## Validation
 
-At minimum add automated checks for:
+CI must validate at minimum:
 
-1. exactly 114 surahs represented;
+1. exactly 114 study days;
 2. study order is 114→1;
-3. for each S, `new_lemmas(S)` and `known_lemmas(S)` are disjoint;
-4. their union equals `L(S)`;
+3. Surah 114 begins with zero carried vocabulary;
+4. new and carried vocabulary are disjoint and together equal the current-surah vocabulary set;
 5. analogous root invariants;
-6. cumulative vocabulary counts are monotonic non-decreasing as study progresses 114→1;
-7. Surah 2 uses Surahs 3–114 as its seen set;
-8. generated counts equal the lengths of generated item arrays;
-9. source/version metadata is present.
+6. cumulative vocabulary/root counts never decrease as study progresses;
+7. Surah 2 is Day 113 and uses Surahs 3–114 as its known-before set;
+8. Surah 1 is Day 114;
+9. generated counts equal generated item-list lengths;
+10. source/version/blob metadata is present;
+11. parsed morphology rows = 128,219;
+12. orthographic word positions = 77,429;
+13. final canonical vocabulary inventory = 4,832;
+14. final root inventory = 1,642.
 
 ## UI Rule
 
-Never display a naked label such as “new words” when the underlying calculation is lemma-based or root-based. Use explicit labels such as:
+Do not display an ambiguous naked label such as “new words.” Use labels whose meaning is defined by the data contract, such as:
 
-- New lemmas
+- New vocabulary
+- Previously learned vocabulary
 - New roots
-- Previously seen lemmas
-- Total word occurrences
+- Previously learned roots
+- Lexical word-token coverage
+- Raw STEM forms (only where morphology diagnostics are intentionally shown)
 
 ## Reproducibility Rule
 
-If a number cannot be regenerated from the pinned source data and code, it is not a project fact yet.
+If a number cannot be regenerated from the pinned source data and `scripts/build_cumulative_vocab.py`, it is not a project fact.
+
+Verified results and caveats are recorded in `docs/CALCULATION_RESULTS.md`.
