@@ -11,735 +11,716 @@
       "license": "GPL; Quranic Arabic Corpus © Kais Dukes 2009-2017"
     },
     "calculation": {
-      "primary_learning_unit": "normalized QAC STEM surface form",
-      "normalization": "Unicode NFKD; remove Arabic combining/harakah/Quranic annotation marks and tatweel; preserve Arabic letters",
-      "known_before": "union of the same metric from earlier study days (higher-numbered surahs)",
-      "new_today": "current-surah set minus known-before set",
-      "lemma_warning": "QAC v0.4 lemma annotation is not universal across every stem category; lemma results are supplementary and not the primary vocabulary claim"
+      "primary_vocabulary_identity": "QAC STEM segment LEM value (exact extended-Buckwalter canonical lemma)",
+      "why": "QAC lemmas group inflectional variants; derivationally distinct vocabulary, including derived verb forms, uses distinct canonical lemmas",
+      "known_before": "union of canonical vocabulary items from earlier study days (higher-numbered surahs)",
+      "new_today": "vocab(current surah) minus known-before; Surah 1 is not in the known set on Day 113",
+      "root_metric": "exact QAC ROOT values on STEM segments, independently accumulated",
+      "raw_stem_metric": "supplementary diagnostic only; not the product vocabulary count"
     },
     "parsed_segment_rows": 128219,
     "parsed_stem_rows": 77915,
+    "stems_missing_lemma": 3307,
     "orthographic_word_positions": 77429
   },
   "result": {
     "day": 113,
     "surah": 2,
     "orthographic_word_tokens": 6116,
-    "stem_occurrences": 6165,
-    "distinct_learning_units": 2065,
-    "carried_learning_units": 1542,
-    "new_learning_units": 523,
-    "known_before_learning_units": 11586,
-    "known_after_learning_units": 12109,
-    "known_stem_occurrences": 5565,
-    "new_stem_occurrences": 600,
-    "known_stem_token_coverage_pct": 90.2676,
-    "distinct_qac_annotated_lemmas": 1136,
-    "carried_qac_annotated_lemmas": 991,
-    "new_qac_annotated_lemmas": 145,
-    "known_before_qac_annotated_lemmas": 4686,
-    "known_after_qac_annotated_lemmas": 4831,
+    "lexical_word_tokens": 5835,
+    "distinct_vocabulary_items": 1136,
+    "carried_vocabulary_items": 991,
+    "new_vocabulary_items": 145,
+    "known_before_vocabulary_items": 4686,
+    "known_after_vocabulary_items": 4831,
+    "known_lexical_word_tokens": 5656,
+    "new_lexical_word_tokens": 179,
+    "known_lexical_word_token_coverage_pct": 96.9323,
+    "lexical_stem_occurrences": 5884,
+    "known_lexical_stem_occurrences": 5705,
+    "new_lexical_stem_occurrences": 179,
     "distinct_roots": 585,
     "carried_roots": 563,
     "new_roots": 22,
     "known_before_roots": 1620,
     "known_after_roots": 1642,
-    "new_learning_unit_items": [
-      "$aAkirN",
-      "$aEaA^}iri",
-      "$aTora",
-      "$afa`EapN",
-      "$ahiydayoni",
-      "$ahoru",
-      "$araAbi",
-      "$ariba",
-      "$aribu",
-      "$aya`Tiyni",
-      "$iyapa",
-      "$~ahori",
-      "$~ahoru",
-      "'aAvimN",
-      "'aAyapK]",
-      "*abaHu",
-      "*aluwlN",
-      "*awiY",
-      "<iEoSaArN",
-      "<iHosaAnFA",
-      "<iSolaAHN",
-      "<iSorFA",
-      "<ibora`hi.ma",
-      "<ibora`hi.mu",
-      "<ikoraAha",
-      "<iloHaAfFA",
-      "<imosaAkN[",
-      "<isoma`Eiylu",
-      "<ivomu",
-      "<ixoraAjK",
-      "<ixoraAju",
-      ">a$ad~i",
-      ">a$ohurN",
-      ">a*okuro",
-      ">aDaA^'a",
-      ">aDaA^'ato",
-      ">aDoEaAfFA",
-      ">aDoTar~u",
-      ">aEonata",
-      ">aHa`Tato",
-      ">aHoraSa",
-      ">aHosinu",
-      ">aHoya`",
-      ">aSobara",
-      ">abowa`bi",
-      ">aboyaDu",
-      ">adaA^'N",
-      ">afaADa",
-      ">agoniyaA^'a",
-      ">ahil~api",
-      ">ajali",
-      ">akonan",
-      ">alad~u",
-      ">alofayo",
-      ">amaAniY~a",
-      ">amaAniy~u",
-      ">ama`nata",
-      ">amapN",
-      ">amowa`tN[",
-      ">an[bi_#u",
-      ">an[bi}o",
-      ">asobaATa",
-      ">asobaAbu",
-      ">asolimo",
-      ">asomaA^'a",
-      ">asomaA^'i",
-      ">asomaA^}i",
-      ">asowadi",
-      ">atuwbu",
-      ">ayonamaA",
-      ">azal~a",
-      ">o*anu",
-      ">u$oribu",
-      ">uHoSiro",
-      ">uHoSiru",
-      ">uHoYi.",
-      ">ujiybu",
-      ">uluwfN",
-      ">umat~iEu",
-      ">umiytu",
-      ">um~iy~uwna",
-      ">usa`raY`",
-      ">utim~a",
-      ">utu",
-      ">uwfi",
-      "DaA^r~iyna",
-      "DarobFA",
-      "DuEafaA^'u",
-      "Ea$arapN",
-      "Eadasi",
-      "EadolN",
-      "Eaqalu",
-      "Earafa`tK",
-      "Ear~aDo",
-      "EawaAnN[",
-      "Eazamu",
-      "EiZaAmi",
-      "Eid~apN",
-      "EufiYa",
-      "EumoYN",
-      "Eumorapa",
-      "Eumorapi",
-      "Euqodapa",
-      "Euqodapu",
-      "EuroDapF",
-      "Eusora",
-      "EusorapK",
-      "Ha*ara",
-      "HaADirapF",
-      "HaADiriY",
-      "Ha`fiZu",
-      "Haj~a",
-      "Haj~u",
-      "HaraAmu",
-      "HarobK",
-      "HasadFA",
-      "Hawolayoni",
-      "Hayaw`pK",
-      "Hayaw`pN",
-      "HifoZu",
-      "HijaArapi",
-      "Huj~apN",
-      "Huk~aAmi",
-      "Huruma`tu",
-      "Hur~i",
-      "Hur~u",
-      "Sadaqa`ti",
-      "Sad~N",
-      "SaforaA^'u",
-      "SafowaAnK",
-      "SalodFA",
-      "Say~ibK",
-      "SibogapF",
-      "Sibogapa",
-      "SiyaAmK",
-      "Sum~N[",
-      "Suro",
-      "S~afaA",
-      "S~alawa`ti",
-      "S~awa`Eiqi",
-      "S~iyaAma",
-      "S~iyaAmi",
-      "S~iyaAmu",
-      "TaAluwta",
-      "TaAluwtu",
-      "TaAqapa",
-      "Tah~ira",
-      "Tal~N",
-      "T~a`guwtu",
-      "T~ala`qa",
-      "T~ala`qu",
-      "ZulalK",
-      "Zuluma`tN",
-      "_#aAtato",
-      "_#aAxi*iy",
-      "ba>osaA^'u",
-      "baAbila",
-      "baAri}i",
-      "baEuwDapF",
-      "baSali",
-      "ba`$iru",
-      "baladFA",
-      "baqara",
-      "baqarapF",
-      "baqarapN",
-      "baqiYa",
-      "baqiy~apN",
-      "baqoli",
-      "baroqN",
-      "baroqu",
-      "basoTapF",
-      "bayoEu",
-      "bay~anu",
-      "bikorN",
-      "bir~u",
-      "buEuwlatu",
-      "buhita",
-      "b~ayona",
-      "daEowapa",
-      "darajapN",
-      "dimaA^'a",
-      "duEaA^'F",
-      "d~imaA^'a",
-      "faA^'u",
-      "faAqiEN",
-      "faAriDN",
-      "faSala",
-      "faqora",
-      "fataHa",
-      "fiSaAlFA",
-      "fira`$FA",
-      "fitonapu",
-      "fusuwqN[",
-      "fuwmi",
-      "gamaAma",
-      "gamaAmi",
-      "gi$a`wapN",
-      "guforaAna",
-      "gurofapF[",
-      "ha`ruwta",
-      "hadoYi",
-      "hadoYu",
-      "hazamu",
-      "jaAEilN",
-      "jaAhilu",
-      "jaAluwta",
-      "janafFA",
-      "jan~apK]",
-      "jiboriyla",
-      "jidaAla",
-      "jisomi",
-      "kaAfirK]",
-      "kaAmilapN",
-      "kaAmilayoni",
-      "kaAtibFA",
-      "kaAtibN",
-      "kaAtibN[",
-      "kabiyrapN",
-      "kalima`tK",
-      "kasabo",
-      "katabato",
-      "katama",
-      "kaviyrapF[",
-      "kuforN[",
-      "kuf~aArFA",
-      "kurohN",
-      "kurosiy~u",
-      "lawonu",
-      "layolapa",
-      "libaAsN",
-      "l~a`Einuwna",
-      "l~awonu",
-      "ma$oEari",
-      "ma$oriqu",
-      "ma`ruwta",
-      "magoribu",
-      "malikFA",
-      "manaAsika",
-      "man~FA",
-      "man~i",
-      "maraDFA",
-      "mariyDFA",
-      "marowapa",
-      "mar~ataAni",
-      "masa`jidi",
-      "mas~i",
-      "mata`EF[A",
-      "mata`EN[",
-      "mavaAbapF",
-      "mavuwbapN",
-      "mawa`qiytu",
-      "mawoluwdi",
-      "mayosarapK",
-      "miSorFA",
-      "mil~ata",
-      "misokiynK",
-      "miykaY`la",
-      "muHiyTN[",
-      "muSad~iqN",
-      "muSal~FY",
-      "muSoliHi",
-      "muTal~aqa`ti",
-      "muTal~aqa`tu",
-      "mubotaliy",
-      "mufosida",
-      "muqotiri",
-      "musal~amapN",
-      "musax~ari",
-      "musolimayoni",
-      "musotahozi'uwna",
-      "mutaTah~iriyna",
-      "muwal~iy",
-      "muwfuwna",
-      "muwsiEi",
-      "muxoliSuwna",
-      "muzaHoziHi",
-      "m~a$a",
-      "m~aEoduwdapF",
-      "m~aEoluwma`tN",
-      "m~aEoruwfK",
-      "m~anaEa",
-      "m~ana`sika",
-      "m~aqobuwDapN",
-      "m~ariyDFA",
-      "m~iA@}apu",
-      "m~il~api",
-      "m~u$orikK",
-      "m~u$orikapK",
-      "m~u&ominapN",
-      "m~ula`quw",
-      "m~usolimapF",
-      "m~uwSK",
-      "na>oti",
-      "naZirapN",
-      "naba*a",
-      "nabiy~u",
-      "nakosuw",
-      "nansaxo",
-      "naraY",
-      "natabar~a>a",
-      "nawomN",
-      "niEim~aA",
-      "nisaA^&u",
-      "nun$izu",
-      "nunsi",
-      "nuqa`tila",
-      "nuqad~isu",
-      "nusab~iHu",
-      "nusukK",
-      "nuwal~iya",
-      "n~a*orK",
-      "n~aSobira",
-      "n~aba*a",
-      "n~afaqapK",
-      "n~asiy",
-      "n~asola",
-      "n~ikaAHi",
-      "n~uqa`tilo",
-      "qaliylapK",
-      "qasowapF",
-      "qatolaY",
-      "qawaAEida",
-      "qiSaASi",
-      "qiSaASu",
-      "qibolapa",
-      "qibolata",
-      "qibolati",
-      "qitaAlN",
-      "qiv~aA^}i",
-      "quruw^'K",
-      "quwmu",
-      "raEodN",
-      "rabiHat",
-      "rad~i",
-      "rafava",
-      "ramaDaAna",
-      "riha`nN",
-      "rukobaAnFA",
-      "ruziqo",
-      "ruziqu",
-      "r~aDaAEapa",
-      "r~afavu",
-      "r~u$odu",
-      "saEoyFA",
-      "saboEapK",
-      "safiha",
-      "safiyhFA",
-      "sakiynapN",
-      "sal~amo",
-      "sanaAbila",
-      "sinapN",
-      "sun[bulapK",
-      "su}ila",
-      "s~ilomi",
-      "ta$aAwurK",
-      "ta$a`bahato",
-      "ta*obaHu",
-      "taAbiEK",
-      "taDil~a",
-      "taEaj~ala",
-      "taEozimu",
-      "taHil~u",
-      "taHoliqu",
-      "taSad~aqu",
-      "taSuwmu",
-      "taTah~aro",
-      "taTaw~aEa",
-      "taTomaEu",
-      "taZa`haru",
-      "tabaAyaEo",
-      "tabar~a'u",
-      "tabiEu",
-      "tadaAyan",
-      "taforiDu",
-      "tajoziY",
-      "takofuro",
-      "takotubu",
-      "talaq~aY`^",
-      "tamat~aEa",
-      "tankiHa",
-      "taqaT~aEato",
-      "tara`Da",
-      "tarab~uSu",
-      "tarotaAbu",
-      "taso_#amu",
-      "tasofiku",
-      "tasoqiY",
-      "tasoriyHN[",
-      "tasotabodilu",
-      "tasotaroDiEu",
-      "tasur~u",
-      "tatolu",
-      "taxofiyfN",
-      "taxotaAnu",
-      "tazaw~adu",
-      "tilaAwati",
-      "tu*ak~ira",
-      "tuDaA^r~a",
-      "tuHam~ilo",
-      "tuHoYi",
-      "tuba`$iru",
-      "tudiyru",
-      "tudolu",
-      "tufa`du",
-      "tugomiDu",
-      "tukomilu",
-      "tunkiHu",
-      "turaAbN",
-      "tuwaAEidu",
-      "tuxaAliTu",
-      "t~aAbuwtu",
-      "t~aEaf~ufi",
-      "t~aholukapi",
-      "t~aw~a`biyna",
-      "t~ija`ratu",
-      "vamarapK",
-      "waAbilN",
-      "waArivi",
-      "waSiy~apu",
-      "wa`lida`tu",
-      "wa`lidapN[",
-      "wal~i",
-      "wal~u",
-      "wasaTFA",
-      "wijohapN",
-      "wusoTaY`",
-      "xaA^}ifiyna",
-      "xaTiy^_#atu",
-      "xala`qK",
-      "xaraAbi",
-      "xayoTi",
-      "xayoTu",
-      "xiTobapi",
-      "xul~apN",
-      "ya$oriY",
-      "ya$~aq~aqu",
-      "ya>oba",
-      "yaDoriba",
-      "yaEofuwaA@",
-      "yaEoquwbu",
-      "yaSumo",
-      "yaToEamo",
-      "yaTohuro",
-      "yaToma}in~a",
-      "yaT~aw~afa",
-      "ya_#uwdu",
-      "yaboS:uTu",
-      "yaboxaso",
-      "yahobiTu",
-      "yakofiy",
-      "yakotub",
-      "yakotuba",
-      "yakotubo",
-      "yakotumo",
-      "yamoHaqu",
-      "yamuto",
-      "yankiHo",
-      "yanoEiqu",
-      "yaro$udu",
-      "yarotadido",
-      "yasofiku",
-      "yasotaHoYi.^",
-      "yasotafotiHu",
-      "yasotahozi}u",
-      "yataEal~amu",
-      "yatabad~ali",
-      "yatafaj~aru",
-      "yataraAjaEa",
-      "yatarab~aSo",
-      "yatasan~aho",
-      "yataxab~aTu",
-      "yatobaEu",
-      "yaxaAfa",
-      "yaxoTafu",
-      "yu$ohidu",
-      "yu&olu",
-      "yu&omi",
-      "yuDaA^r~a",
-      "yuDa`Eifu",
-      "yuDiyEa",
-      "yuEal~ima",
-      "yuEam~ara",
-      "yuHaAsibo",
-      "yuTiyqu",
-      "yubad~ilo",
-      "yubay~in",
-      "yufosida",
-      "yukaf~iru",
-      "yumil~a",
-      "yumolili",
-      "yumolilo",
-      "yuqiyma",
-      "yuqobalu",
-      "yuroDiEo",
-      "yurobiY",
-      "yusora",
-      "yutawaf~a",
-      "yutobiEu",
-      "zalalo",
-      "zawojFA",
-      "z~aAdi",
-      "{&otumina",
-      "{Eotada",
-      "{Eotadu",
-      "{Eotamara",
-      "{Hotaraqato",
-      "{SofaHu",
-      "{botalaY`^",
-      "{d~a`ra`#o",
-      "{gotarafa",
-      "{kotasabato",
-      "{kotubu",
-      "{mora>ataAni",
-      "{nfajarato",
-      "{nfiSaAma",
-      "{ntahaY`",
-      "{qotatala",
-      "{sotawoqada",
-      "{sotayosara",
-      "{t~ibaAEN[",
-      "{t~ixaA*i",
-      "{t~ubiEu",
-      "}a"
+    "distinct_raw_stem_forms": 2065,
+    "carried_raw_stem_forms": 1542,
+    "new_raw_stem_forms": 523,
+    "known_before_raw_stem_forms": 11586,
+    "known_after_raw_stem_forms": 12109,
+    "new_vocabulary_item_list": [
+      {
+        "buckwalter": "$aTor",
+        "arabic": "شَطْر"
+      },
+      {
+        "buckwalter": "$iyap",
+        "arabic": "شِيَة"
+      },
+      {
+        "buckwalter": "<iEoSaAr",
+        "arabic": "إِعْصَار"
+      },
+      {
+        "buckwalter": "<iloHaAf",
+        "arabic": "إِلْحَاف"
+      },
+      {
+        "buckwalter": "<imosaAk",
+        "arabic": "إِمْسَاك"
+      },
+      {
+        "buckwalter": ">aEonata",
+        "arabic": "أَعْنَتَ"
+      },
+      {
+        "buckwalter": ">aHoraS",
+        "arabic": "أَحْرَص"
+      },
+      {
+        "buckwalter": ">aZolama",
+        "arabic": "أَظْلَمَ"
+      },
+      {
+        "buckwalter": ">adaA^'",
+        "arabic": "أَدَآء"
+      },
+      {
+        "buckwalter": ">ahil~ap",
+        "arabic": "أَهِلَّة"
+      },
+      {
+        "buckwalter": ">alad~",
+        "arabic": "أَلَدّ"
+      },
+      {
+        "buckwalter": ">asowad",
+        "arabic": "أَسْوَد"
+      },
+      {
+        "buckwalter": ">azal~a",
+        "arabic": "أَزَلَّ"
+      },
+      {
+        "buckwalter": ">u$oribu",
+        "arabic": "أُشْرِبُ"
+      },
+      {
+        "buckwalter": ">uHoSiru",
+        "arabic": "أُحْصِرُ"
+      },
+      {
+        "buckwalter": "Eadas",
+        "arabic": "عَدَس"
+      },
+      {
+        "buckwalter": "Earafa`t",
+        "arabic": "عَرَفَٰت"
+      },
+      {
+        "buckwalter": "Ear~aDo",
+        "arabic": "عَرَّضْ"
+      },
+      {
+        "buckwalter": "EawaAn",
+        "arabic": "عَوَان"
+      },
+      {
+        "buckwalter": "Eumorap",
+        "arabic": "عُمْرَة"
+      },
+      {
+        "buckwalter": "EuroDap",
+        "arabic": "عُرْضَة"
+      },
+      {
+        "buckwalter": "Ha*ar",
+        "arabic": "حَذَر"
+      },
+      {
+        "buckwalter": "HaADiriY",
+        "arabic": "حَاضِرِى"
+      },
+      {
+        "buckwalter": "Haj~a",
+        "arabic": "حَجَّ"
+      },
+      {
+        "buckwalter": "Hasad",
+        "arabic": "حَسَد"
+      },
+      {
+        "buckwalter": "Hayov2",
+        "arabic": "حَيْث2"
+      },
+      {
+        "buckwalter": "Huk~aAm",
+        "arabic": "حُكَّام"
+      },
+      {
+        "buckwalter": "Hur~",
+        "arabic": "حُرّ"
+      },
+      {
+        "buckwalter": "SaforaA^'",
+        "arabic": "صَفْرَآء"
+      },
+      {
+        "buckwalter": "SafowaAn",
+        "arabic": "صَفْوَان"
+      },
+      {
+        "buckwalter": "Salod",
+        "arabic": "صَلْد"
+      },
+      {
+        "buckwalter": "Say~ib",
+        "arabic": "صَيِّب"
+      },
+      {
+        "buckwalter": "Sibogap",
+        "arabic": "صِبْغَة"
+      },
+      {
+        "buckwalter": "Suro",
+        "arabic": "صُرْ"
+      },
+      {
+        "buckwalter": "S~afaA",
+        "arabic": "صَّفَا"
+      },
+      {
+        "buckwalter": "TaAluwt",
+        "arabic": "طَالُوت"
+      },
+      {
+        "buckwalter": "TaAqap",
+        "arabic": "طَاقَة"
+      },
+      {
+        "buckwalter": "Tal~",
+        "arabic": "طَلّ"
+      },
+      {
+        "buckwalter": "T~ala`q",
+        "arabic": "طَّلَٰق"
+      },
+      {
+        "buckwalter": "baAbil",
+        "arabic": "بَابِل"
+      },
+      {
+        "buckwalter": "baEuwDap",
+        "arabic": "بَعُوضَة"
+      },
+      {
+        "buckwalter": "baSal",
+        "arabic": "بَصَل"
+      },
+      {
+        "buckwalter": "ba`$iru",
+        "arabic": "بَٰشِرُ"
+      },
+      {
+        "buckwalter": "baqarap",
+        "arabic": "بَقَرَة"
+      },
+      {
+        "buckwalter": "baqol",
+        "arabic": "بَقْل"
+      },
+      {
+        "buckwalter": "faAqiE",
+        "arabic": "فَاقِع"
+      },
+      {
+        "buckwalter": "faAriD",
+        "arabic": "فَارِض"
+      },
+      {
+        "buckwalter": "faqor",
+        "arabic": "فَقْر"
+      },
+      {
+        "buckwalter": "fuwm",
+        "arabic": "فُوم"
+      },
+      {
+        "buckwalter": "guforaAn",
+        "arabic": "غُفْرَان"
+      },
+      {
+        "buckwalter": "ha`ruwt",
+        "arabic": "هَٰرُوت"
+      },
+      {
+        "buckwalter": "huwd2",
+        "arabic": "هُود2"
+      },
+      {
+        "buckwalter": "jaAluwt",
+        "arabic": "جَالُوت"
+      },
+      {
+        "buckwalter": "janaf",
+        "arabic": "جَنَف"
+      },
+      {
+        "buckwalter": "kaAmilayon",
+        "arabic": "كَامِلَيْن"
+      },
+      {
+        "buckwalter": "l~a`Einuwn",
+        "arabic": "لَّٰعِنُون"
+      },
+      {
+        "buckwalter": "ma$oEar",
+        "arabic": "مَشْعَر"
+      },
+      {
+        "buckwalter": "ma`ruwt",
+        "arabic": "مَٰرُوت"
+      },
+      {
+        "buckwalter": "marowap",
+        "arabic": "مَرْوَة"
+      },
+      {
+        "buckwalter": "mavaAbap",
+        "arabic": "مَثَابَة"
+      },
+      {
+        "buckwalter": "mayosarap",
+        "arabic": "مَيْسَرَة"
+      },
+      {
+        "buckwalter": "miykaY`l",
+        "arabic": "مِيكَىٰل"
+      },
+      {
+        "buckwalter": "muSal~FY",
+        "arabic": "مُصَلًّى"
+      },
+      {
+        "buckwalter": "muTal~aqa`t",
+        "arabic": "مُطَلَّقَٰت"
+      },
+      {
+        "buckwalter": "muqotir",
+        "arabic": "مُقْتِر"
+      },
+      {
+        "buckwalter": "musax~ar",
+        "arabic": "مُسَخَّر"
+      },
+      {
+        "buckwalter": "mutaTah~iriyn",
+        "arabic": "مُتَطَهِّرِين"
+      },
+      {
+        "buckwalter": "muwal~iy",
+        "arabic": "مُوَلِّي"
+      },
+      {
+        "buckwalter": "muwfuwn",
+        "arabic": "مُوفُون"
+      },
+      {
+        "buckwalter": "muzaHoziH",
+        "arabic": "مُزَحْزِح"
+      },
+      {
+        "buckwalter": "m~aqobuwDap",
+        "arabic": "مَّقْبُوضَة"
+      },
+      {
+        "buckwalter": "m~usolimap",
+        "arabic": "مُّسْلِمَة"
+      },
+      {
+        "buckwalter": "m~uwS",
+        "arabic": "مُّوص"
+      },
+      {
+        "buckwalter": "naZirap",
+        "arabic": "نَظِرَة"
+      },
+      {
+        "buckwalter": "nun$izu",
+        "arabic": "نُنشِزُ"
+      },
+      {
+        "buckwalter": "nuqad~isu",
+        "arabic": "نُقَدِّسُ"
+      },
+      {
+        "buckwalter": "qaliylap",
+        "arabic": "قَلِيلَة"
+      },
+      {
+        "buckwalter": "qasowap",
+        "arabic": "قَسْوَة"
+      },
+      {
+        "buckwalter": "qatolaY",
+        "arabic": "قَتْلَى"
+      },
+      {
+        "buckwalter": "qiv~aA^}",
+        "arabic": "قِثَّآئ"
+      },
+      {
+        "buckwalter": "quruw^'",
+        "arabic": "قُرُوٓء"
+      },
+      {
+        "buckwalter": "rabiHat",
+        "arabic": "رَبِحَت"
+      },
+      {
+        "buckwalter": "rafav",
+        "arabic": "رَفَث"
+      },
+      {
+        "buckwalter": "ramaDaAn",
+        "arabic": "رَمَضَان"
+      },
+      {
+        "buckwalter": "riha`n",
+        "arabic": "رِهَٰن"
+      },
+      {
+        "buckwalter": "rukobaAn",
+        "arabic": "رُكْبَان"
+      },
+      {
+        "buckwalter": "safiha",
+        "arabic": "سَفِهَ"
+      },
+      {
+        "buckwalter": "sinap",
+        "arabic": "سِنَة"
+      },
+      {
+        "buckwalter": "sunbulap",
+        "arabic": "سُنبُلَة"
+      },
+      {
+        "buckwalter": "s~ilom",
+        "arabic": "سِّلْم"
+      },
+      {
+        "buckwalter": "ta$aAwur",
+        "arabic": "تَشَاوُر"
+      },
+      {
+        "buckwalter": "taEaj~ala",
+        "arabic": "تَعَجَّلَ"
+      },
+      {
+        "buckwalter": "taHoliqu",
+        "arabic": "تَحْلِقُ"
+      },
+      {
+        "buckwalter": "taTaw~aEa",
+        "arabic": "تَطَوَّعَ"
+      },
+      {
+        "buckwalter": "tabaAyaEo",
+        "arabic": "تَبَايَعْ"
+      },
+      {
+        "buckwalter": "tadaAyan",
+        "arabic": "تَدَايَن"
+      },
+      {
+        "buckwalter": "tarab~uS",
+        "arabic": "تَرَبُّص"
+      },
+      {
+        "buckwalter": "tasoriyH",
+        "arabic": "تَسْرِيح"
+      },
+      {
+        "buckwalter": "tasotaroDiEu",
+        "arabic": "تَسْتَرْضِعُ"
+      },
+      {
+        "buckwalter": "tasur~u",
+        "arabic": "تَسُرُّ"
+      },
+      {
+        "buckwalter": "taxofiyf",
+        "arabic": "تَخْفِيف"
+      },
+      {
+        "buckwalter": "tazaw~adu",
+        "arabic": "تَزَوَّدُ"
+      },
+      {
+        "buckwalter": "tilaAwat",
+        "arabic": "تِلَاوَت"
+      },
+      {
+        "buckwalter": "tudiyru",
+        "arabic": "تُدِيرُ"
+      },
+      {
+        "buckwalter": "tufa`du",
+        "arabic": "تُفَٰدُ"
+      },
+      {
+        "buckwalter": "tugomiDu",
+        "arabic": "تُغْمِضُ"
+      },
+      {
+        "buckwalter": "tuxaAliTu",
+        "arabic": "تُخَالِطُ"
+      },
+      {
+        "buckwalter": "t~aEaf~uf",
+        "arabic": "تَّعَفُّف"
+      },
+      {
+        "buckwalter": "t~aholukap",
+        "arabic": "تَّهْلُكَة"
+      },
+      {
+        "buckwalter": "vamarap",
+        "arabic": "ثَمَرَة"
+      },
+      {
+        "buckwalter": "waAbil",
+        "arabic": "وَابِل"
+      },
+      {
+        "buckwalter": "wa`lida`t",
+        "arabic": "وَٰلِدَٰت"
+      },
+      {
+        "buckwalter": "wasaT",
+        "arabic": "وَسَط"
+      },
+      {
+        "buckwalter": "wijohap",
+        "arabic": "وِجْهَة"
+      },
+      {
+        "buckwalter": "wusoTaY`",
+        "arabic": "وُسْطَىٰ"
+      },
+      {
+        "buckwalter": "xaraAb",
+        "arabic": "خَرَاب"
+      },
+      {
+        "buckwalter": "xayoT",
+        "arabic": "خَيْط"
+      },
+      {
+        "buckwalter": "xiTobap",
+        "arabic": "خِطْبَة"
+      },
+      {
+        "buckwalter": "xul~ap",
+        "arabic": "خُلَّة"
+      },
+      {
+        "buckwalter": "yaSumo",
+        "arabic": "يَصُمْ"
+      },
+      {
+        "buckwalter": "yaTohuro",
+        "arabic": "يَطْهُرْ"
+      },
+      {
+        "buckwalter": "ya_#uwdu",
+        "arabic": "يَـُٔودُ"
+      },
+      {
+        "buckwalter": "yanoEiqu",
+        "arabic": "يَنْعِقُ"
+      },
+      {
+        "buckwalter": "yaro$udu",
+        "arabic": "يَرْشُدُ"
+      },
+      {
+        "buckwalter": "yasofiku",
+        "arabic": "يَسْفِكُ"
+      },
+      {
+        "buckwalter": "yataEal~amu",
+        "arabic": "يَتَعَلَّمُ"
+      },
+      {
+        "buckwalter": "yatafaj~aru",
+        "arabic": "يَتَفَجَّرُ"
+      },
+      {
+        "buckwalter": "yataraAjaEa",
+        "arabic": "يَتَرَاجَعَ"
+      },
+      {
+        "buckwalter": "yatasan~aho",
+        "arabic": "يَتَسَنَّهْ"
+      },
+      {
+        "buckwalter": "yataxab~aTu",
+        "arabic": "يَتَخَبَّطُ"
+      },
+      {
+        "buckwalter": "yu&olu",
+        "arabic": "يُؤْلُ"
+      },
+      {
+        "buckwalter": "yuTiyqu",
+        "arabic": "يُطِيقُ"
+      },
+      {
+        "buckwalter": "yumil~a",
+        "arabic": "يُمِلَّ"
+      },
+      {
+        "buckwalter": "yuroDiEo",
+        "arabic": "يُرْضِعْ"
+      },
+      {
+        "buckwalter": "z~aAd",
+        "arabic": "زَّاد"
+      },
+      {
+        "buckwalter": "{&otumina",
+        "arabic": "ٱؤْتُمِنَ"
+      },
+      {
+        "buckwalter": "{Eotamara",
+        "arabic": "ٱعْتَمَرَ"
+      },
+      {
+        "buckwalter": "{Hotaraqato",
+        "arabic": "ٱحْتَرَقَتْ"
+      },
+      {
+        "buckwalter": "{d~a`ra`#o",
+        "arabic": "ٱدَّٰرَْٰٔ"
+      },
+      {
+        "buckwalter": "{gotarafa",
+        "arabic": "ٱغْتَرَفَ"
+      },
+      {
+        "buckwalter": "{nfajarato",
+        "arabic": "ٱنفَجَرَتْ"
+      },
+      {
+        "buckwalter": "{nfiSaAm",
+        "arabic": "ٱنفِصَام"
+      },
+      {
+        "buckwalter": "{sotawoqada",
+        "arabic": "ٱسْتَوْقَدَ"
+      },
+      {
+        "buckwalter": "{sotayosara",
+        "arabic": "ٱسْتَيْسَرَ"
+      },
+      {
+        "buckwalter": "{t~ixaA*",
+        "arabic": "ٱتِّخَاذ"
+      }
     ],
-    "new_qac_annotated_lemma_items": [
-      "$aTor",
-      "$iyap",
-      "<iEoSaAr",
-      "<iloHaAf",
-      "<imosaAk",
-      ">aEonata",
-      ">aHoraS",
-      ">aZolama",
-      ">adaA^'",
-      ">ahil~ap",
-      ">alad~",
-      ">asowad",
-      ">azal~a",
-      ">u$oribu",
-      ">uHoSiru",
-      "Eadas",
-      "Earafa`t",
-      "Ear~aDo",
-      "EawaAn",
-      "Eumorap",
-      "EuroDap",
-      "Ha*ar",
-      "HaADiriY",
-      "Haj~a",
-      "Hasad",
-      "Hayov2",
-      "Huk~aAm",
-      "Hur~",
-      "SaforaA^'",
-      "SafowaAn",
-      "Salod",
-      "Say~ib",
-      "Sibogap",
-      "Suro",
-      "S~afaA",
-      "TaAluwt",
-      "TaAqap",
-      "Tal~",
-      "T~ala`q",
-      "baAbil",
-      "baEuwDap",
-      "baSal",
-      "ba`$iru",
-      "baqarap",
-      "baqol",
-      "faAqiE",
-      "faAriD",
-      "faqor",
-      "fuwm",
-      "guforaAn",
-      "ha`ruwt",
-      "huwd2",
-      "jaAluwt",
-      "janaf",
-      "kaAmilayon",
-      "l~a`Einuwn",
-      "ma$oEar",
-      "ma`ruwt",
-      "marowap",
-      "mavaAbap",
-      "mayosarap",
-      "miykaY`l",
-      "muSal~FY",
-      "muTal~aqa`t",
-      "muqotir",
-      "musax~ar",
-      "mutaTah~iriyn",
-      "muwal~iy",
-      "muwfuwn",
-      "muzaHoziH",
-      "m~aqobuwDap",
-      "m~usolimap",
-      "m~uwS",
-      "naZirap",
-      "nun$izu",
-      "nuqad~isu",
-      "qaliylap",
-      "qasowap",
-      "qatolaY",
-      "qiv~aA^}",
-      "quruw^'",
-      "rabiHat",
-      "rafav",
-      "ramaDaAn",
-      "riha`n",
-      "rukobaAn",
-      "safiha",
-      "sinap",
-      "sunbulap",
-      "s~ilom",
-      "ta$aAwur",
-      "taEaj~ala",
-      "taHoliqu",
-      "taTaw~aEa",
-      "tabaAyaEo",
-      "tadaAyan",
-      "tarab~uS",
-      "tasoriyH",
-      "tasotaroDiEu",
-      "tasur~u",
-      "taxofiyf",
-      "tazaw~adu",
-      "tilaAwat",
-      "tudiyru",
-      "tufa`du",
-      "tugomiDu",
-      "tuxaAliTu",
-      "t~aEaf~uf",
-      "t~aholukap",
-      "vamarap",
-      "waAbil",
-      "wa`lida`t",
-      "wasaT",
-      "wijohap",
-      "wusoTaY`",
-      "xaraAb",
-      "xayoT",
-      "xiTobap",
-      "xul~ap",
-      "yaSumo",
-      "yaTohuro",
-      "ya_#uwdu",
-      "yanoEiqu",
-      "yaro$udu",
-      "yasofiku",
-      "yataEal~amu",
-      "yatafaj~aru",
-      "yataraAjaEa",
-      "yatasan~aho",
-      "yataxab~aTu",
-      "yu&olu",
-      "yuTiyqu",
-      "yumil~a",
-      "yuroDiEo",
-      "z~aAd",
-      "{&otumina",
-      "{Eotamara",
-      "{Hotaraqato",
-      "{d~a`ra`#o",
-      "{gotarafa",
-      "{nfajarato",
-      "{nfiSaAm",
-      "{sotawoqada",
-      "{sotayosara",
-      "{t~ixaA*"
+    "new_root_list": [
+      {
+        "buckwalter": "$Tr",
+        "arabic": "شطر"
+      },
+      {
+        "buckwalter": "Awd",
+        "arabic": "اود"
+      },
+      {
+        "buckwalter": "Eds",
+        "arabic": "عدس"
+      },
+      {
+        "buckwalter": "Sld",
+        "arabic": "صلد"
+      },
+      {
+        "buckwalter": "Tll",
+        "arabic": "طلل"
+      },
+      {
+        "buckwalter": "bSl",
+        "arabic": "بصل"
+      },
+      {
+        "buckwalter": "bql",
+        "arabic": "بقل"
+      },
+      {
+        "buckwalter": "fSm",
+        "arabic": "فصم"
+      },
+      {
+        "buckwalter": "fqE",
+        "arabic": "فقع"
+      },
+      {
+        "buckwalter": "fwm",
+        "arabic": "فوم"
+      },
+      {
+        "buckwalter": "gmD",
+        "arabic": "غمض"
+      },
+      {
+        "buckwalter": "lHf",
+        "arabic": "لحف"
+      },
+      {
+        "buckwalter": "nEq",
+        "arabic": "نعق"
+      },
+      {
+        "buckwalter": "qvA",
+        "arabic": "قثا"
+      },
+      {
+        "buckwalter": "rbH",
+        "arabic": "ربح"
+      },
+      {
+        "buckwalter": "rfv",
+        "arabic": "رفث"
+      },
+      {
+        "buckwalter": "sfk",
+        "arabic": "سفك"
+      },
+      {
+        "buckwalter": "snh",
+        "arabic": "سنه"
+      },
+      {
+        "buckwalter": "w$y",
+        "arabic": "وشي"
+      },
+      {
+        "buckwalter": "wsn",
+        "arabic": "وسن"
+      },
+      {
+        "buckwalter": "xbT",
+        "arabic": "خبط"
+      },
+      {
+        "buckwalter": "zwd",
+        "arabic": "زود"
+      }
     ],
-    "new_root_items": [
-      "$Tr",
-      "Awd",
-      "Eds",
-      "Sld",
-      "Tll",
-      "bSl",
-      "bql",
-      "fSm",
-      "fqE",
-      "fwm",
-      "gmD",
-      "lHf",
-      "nEq",
-      "qvA",
-      "rbH",
-      "rfv",
-      "sfk",
-      "snh",
-      "w$y",
-      "wsn",
-      "xbT",
-      "zwd"
-    ],
-    "benchmark": "Surah 2 on Day 113 after studying Surahs 114 through 3; Surah 1 is not included in known-before"
+    "benchmark": "Surah 2 on Day 113 after studying Surahs 114 through 3; Surah 1 is excluded from known-before"
   }
 }
