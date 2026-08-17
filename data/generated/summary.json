@@ -1,0 +1,34 @@
+{
+  "whole_quran": {
+    "orthographic_word_positions": 77429,
+    "stem_rows": 77915,
+    "cumulative_learning_units": 12113,
+    "cumulative_qac_annotated_lemmas": 4832,
+    "cumulative_roots": 1642
+  },
+  "baqarah_day_113": {
+    "day": 113,
+    "surah": 2,
+    "orthographic_word_tokens": 6116,
+    "stem_occurrences": 6165,
+    "distinct_learning_units": 2065,
+    "carried_learning_units": 1542,
+    "new_learning_units": 523,
+    "known_before_learning_units": 11586,
+    "known_after_learning_units": 12109,
+    "known_stem_occurrences": 5565,
+    "new_stem_occurrences": 600,
+    "known_stem_token_coverage_pct": 90.2676,
+    "distinct_qac_annotated_lemmas": 1136,
+    "carried_qac_annotated_lemmas": 991,
+    "new_qac_annotated_lemmas": 145,
+    "known_before_qac_annotated_lemmas": 4686,
+    "known_after_qac_annotated_lemmas": 4831,
+    "distinct_roots": 585,
+    "carried_roots": 563,
+    "new_roots": 22,
+    "known_before_roots": 1620,
+    "known_after_roots": 1642,
+    "benchmark": "Surah 2 on Day 113 after studying Surahs 114 through 3; Surah 1 is not included in known-before"
+  }
+}
