@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>معجم القرآن التراكمي — 114 Days to the Vocabulary of the Qurʾan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Amiri+Quran&display=swap" rel="stylesheet">
+<style>
+:root{--vellum:#F4EFE2;--card:#FBF8EF;--ink:#241F18;--soft:#6B6253;--line:#E2D8BE;
+--em:#0B4A3C;--em2:#06332A;--mist:#DCE7E0;--gold:#B9891F;--gold2:#E8D6A0;--red:#9E3B2C;--ok:#2F7A4F}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--vellum);color:var(--ink)}
+body{font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding-bottom:40px}
+.ar{font-family:'Amiri Quran','Amiri','Scheherazade New',serif;direction:rtl}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+/* top bar */
+.top{position:sticky;top:0;z-index:5;background:var(--em2);color:#F2ECD9}
+.top .wrap{display:flex;align-items:center;gap:10px;height:54px}
+.brand{font-family:'Amiri',serif;font-size:1.25rem;flex:1;direction:rtl;text-align:left}
+.pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border-radius:99px;padding:4px 10px;font-size:.85rem;font-weight:600}
+.pill i{font-style:normal;color:var(--gold2)}
+/* home */
+.hero{background:linear-gradient(165deg,var(--em2),var(--em));color:#F2ECD9;border-radius:0 0 26px 26px;padding:20px 0 26px}
+.eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+.meter{display:flex;align-items:center;gap:18px;margin-top:14px}
+.ring{width:108px;height:108px;flex:none;position:relative}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:1.6rem;font-weight:700}
+.meter p{font-size:.95rem;line-height:1.4;color:#E7E0CB}
+.meter p strong{color:#fff}
+.today{background:var(--card);color:var(--ink);border-radius:20px;margin-top:18px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.today .sname{font-size:2.2rem;line-height:1.3;color:var(--em)}
+.today .meta{color:var(--soft);font-size:.9rem}
+.big{display:block;width:100%;background:var(--gold);color:#fff;font-weight:700;font-size:1.05rem;border-radius:14px;padding:15px;margin-top:14px;box-shadow:0 4px 0 #8C6714}
+.big:active{transform:translateY(2px);box-shadow:0 2px 0 #8C6714}
+.big.em{background:var(--em);box-shadow:0 4px 0 var(--em2)}
+.big.ghost{background:transparent;color:var(--em);box-shadow:inset 0 0 0 2px var(--em)}
+.big[disabled]{background:#CFC6AE;box-shadow:none;cursor:default}
+.row2{display:flex;gap:10px}.row2>*{flex:1}
+.chip{display:inline-block;background:var(--mist);color:var(--em2);border-radius:99px;padding:3px 10px;font-size:.8rem;font-weight:600;margin:6px 6px 0 0}
+.chip.gold{background:#F5E9C4;color:#7A5A10}
+h2{font-size:1.15rem;margin:26px 0 4px}
+.note{color:var(--soft);font-size:.9rem}
+/* path */
+.path{margin-top:10px}
+.node{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:9px 4px;border-bottom:1px solid var(--line)}
+.dot{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:700;font-size:.85rem;background:#E9E2CE;color:#9A917E}
+.node.done .dot{background:var(--em);color:#fff}
+.node.cert .dot{background:var(--gold);color:#fff;box-shadow:0 0 0 3px #F5E9C4}
+.node.now .dot{background:#fff;color:var(--gold);box-shadow:0 0 0 3px var(--gold)}
+.node .nm{flex:1;min-width:0}
+.node .nm b{font-weight:600}
+.node .nm small{display:block;color:var(--soft);font-size:.8rem}
+.node .an{font-size:1.25rem;color:var(--em)}
+.node.lock{opacity:.55}
+.gsep{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:16px 0 2px}
+/* lesson */
+.lbar{display:flex;align-items:center;gap:12px;height:56px}
+.x{font-size:1.6rem;color:var(--soft);width:32px}
+.prog{flex:1;height:14px;background:#E6DEC8;border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--gold);border-radius:99px;transition:width .35s}
+.stage{padding-top:10px;min-height:calc(100vh - 190px)}
+.kicker{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.prompt{font-size:1.25rem;font-weight:700;margin:6px 0 14px}
+.wordcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;text-align:center}
+.wordcard .w{font-size:3.2rem;line-height:1.5;color:var(--em2)}
+.wordcard .g{font-size:1.3rem;font-weight:700;margin-top:2px}
+.wordcard .dict{color:var(--soft);font-size:.9rem;margin-top:8px}
+.wordcard .dict span{font-family:'Amiri',serif;font-size:1.1rem;color:var(--ink)}
+.ayah{font-size:1.55rem;line-height:2.3;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);text-align:right}
+.ayah mark{background:#F5E1A4;color:var(--em2);border-radius:6px;padding:0 3px}
+.ayah .blank{display:inline-block;min-width:70px;border-bottom:3px solid var(--gold);margin:0 4px}
+.ref{font-size:.8rem;color:var(--soft);margin-top:4px;text-align:left;direction:ltr}
+.freq{display:inline-block;margin-top:10px;background:var(--mist);color:var(--em2);border-radius:99px;padding:3px 12px;font-size:.82rem;font-weight:600}
+.opts{display:grid;gap:10px;margin-top:16px}
+.opt{background:#fff;border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;padding:13px 14px;text-align:center;font-weight:600;font-size:1.05rem}
+.opt.ar{font-size:1.7rem;font-weight:400;padding:6px 14px}
+.opt.sel{border-color:var(--em);background:var(--mist)}
+.opt.right{border-color:var(--ok);background:#DDF0E2}
+.opt.wrong{border-color:var(--red);background:#F6DEDA}
+.foot{position:sticky;bottom:0;background:var(--vellum);padding:12px 0 18px;margin-top:16px}
+.fb{border-radius:16px;padding:12px 14px;margin-bottom:10px;font-weight:600}
+.fb.ok{background:#DDF0E2;color:#1F5A37}.fb.no{background:#F6DEDA;color:#7A2A1E}
+.fb small{display:block;font-weight:400}
+.gram{background:linear-gradient(165deg,var(--em2),var(--em));color:#F2ECD9;border-radius:20px;padding:22px}
+.gram h3{font-size:1.4rem;margin:4px 0 8px;color:#fff}
+.gram .ex{background:rgba(255,255,255,.08);border-radius:14px;padding:12px;margin-top:14px;text-align:center}
+.gram .ex .ar{font-size:2.2rem;color:#fff}
+/* reader */
+.reader .ay{font-size:1.7rem;line-height:2.4;text-align:right;direction:rtl;padding:6px 0;word-spacing:4px}
+.wd{border-radius:6px;padding:0 2px;cursor:pointer}
+.wd.k{color:#A39B88}
+.wd.n{background:#F5E1A4;color:var(--em2)}
+.wd.u{color:var(--ink)}
+.am{font-family:'Amiri',serif;color:var(--gold);font-size:1.1rem;margin:0 4px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--soft);margin:8px 0}
+.legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.legend .lk:before{background:#CFC8B5}.legend .ln:before{background:#F5E1A4}.legend .lu:before{background:var(--ink)}
+/* sheet */
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fff;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.2);transform:translateY(105%);transition:transform .25s}
+.sheet.on{transform:none}
+.sheet .wrap{padding:18px 16px 26px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:19;display:none}.scrim.on{display:block}
+/* done */
+.done{text-align:center;padding-top:30px}
+.done .ar.big2{font-size:2.6rem;color:var(--em)}
+.stats3{display:flex;gap:10px;margin:18px 0}
+.stats3 div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
+.stats3 b{display:block;font-size:1.4rem;color:var(--em)}
+.stats3 small{color:var(--soft);font-size:.78rem}
+.cert{background:var(--card);border:2px solid var(--gold);border-radius:18px;padding:22px 18px;margin-top:16px;position:relative}
+.cert:before{content:"";position:absolute;inset:6px;border:1px solid var(--gold2);border-radius:13px;pointer-events:none}
+.seal{width:70px;height:70px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;margin:0 auto 10px;font-family:'Amiri',serif;font-size:1.6rem}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.sw{width:46px;height:28px;border-radius:99px;background:#CFC6AE;position:relative;flex:none}
+.sw:after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s}
+.sw.on{background:var(--em)}.sw.on:after{left:21px}
+.banner{background:#F5E9C4;color:#6A4D0C;font-size:.82rem;text-align:center;padding:6px}
+.src{font-size:.75rem;color:var(--soft);margin-top:26px;line-height:1.5}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet"><div class="wrap" id="sheetBody"></div></div>
+<script>
+/* Course data, generated from the Quranic Arabic Corpus v0.4 (vocabulary, roots, grammar)
+   and the Quran.com API (Uthmani text, word-by-word English). See build_course.py. */
+const COURSE=/*COURSE*/null;
+</script>
+<script>
+"use strict";
+/* ================= DATA ================= */
+const DAYS=COURSE.days.map(d=>({n:d[0],ar:d[1],en:d[2],v:d[3],tw:d[4],nw:d[5],cum:d[6],pk:d[7],nu:d[8],voc:d[9]}));
+DAYS.forEach((d,i)=>d.day=i+1);
+const BYN={};DAYS.forEach(d=>BYN[d.n]=d);
+const L=COURSE.L.map((x,i)=>({id:i,lem:x[0],root:x[1],g:x[2],day:x[3],f:x[4],a:x[5],w:x[6],ctx:x[7]}));
+const T=COURSE.T, G=COURSE.G;
+const GBYDAY={};G.forEach(g=>(GBYDAY[g[1]]=GBYDAY[g[1]]||[]).push({code:g[0],day:g[1],title:g[2],ex:g[3],w:g[4],tr:g[5],s:g[6],a:g[7]}));
+const TOTALF=L.reduce((t,x)=>t+x.f,0);
+const surahOf=l=>DAYS[l.day-1].n;
+const verse=l=>T[surahOf(l)][l.a-1];
+const form=l=>verse(l)[l.w-1][0];          // the word as it appears in its verse
+const rootD=r=>r?[...r].join('-'):'';
+const fmt=n=>Number(n).toLocaleString('en-US');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rand=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const DAYMS=864e5;
+
+/* ================= STATE (one learner, kept on this device) ================= */
+const KEY='cql.v1';
+let S=load();
+function blank(){return{start:Date.now(),learned:{},cert:{},mem:{},xp:0,streak:0,lastDay:null,preview:true,lastNew:null}}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.mem)return s}catch(e){}return blank()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+
+/* ================= MEMORY MODEL =================
+   Each word has a stability S (days until recall falls to 90%) and difficulty D (1–10).
+   Recall probability follows the FSRS power-law forgetting curve R = (1 + t/(9S))^-1.
+   A word is "known" when R ≥ 0.9. Reviews pick the words closest to slipping. */
+const now=()=>Date.now();
+function R(m,t=now()){if(!m)return 0;const d=(t-m.t)/DAYMS;return Math.pow(1+d/(9*m.s),-1)}
+function grade(id,ok){
+  const m=S.mem[id];
+  if(!m){S.mem[id]=ok?{s:2.5,d:5,t:now(),n:1,l:0}:{s:0.4,d:6.5,t:now(),n:1,l:1};return}
+  const r=R(m);
+  if(ok){
+    const gain=Math.exp(1.5)*(11-m.d)*Math.pow(m.s,-0.2)*(Math.exp((1-r)*1.2)-1);
+    m.s=Math.max(m.s,m.s*(1+Math.max(gain,0.15)));m.d=Math.max(1,m.d-0.2);
+  }else{m.s=Math.max(0.3,m.s*0.35);m.d=Math.min(10,m.d+0.8);m.l++}
+  m.t=now();m.n++;
+}
+const known=id=>R(S.mem[id])>=0.9;
+function understanding(){let k=0;for(const id in S.mem)if(known(id))k+=L[id].f;return k/TOTALF}
+function surahUnderstanding(n){let k=0,t=0;for(const ay of T[n])for(const w of ay)if(w[1]>=0){t++;if(known(w[1]))k++}return t?k/t:0}
+function dueList(){const out=[];for(const id in S.mem){const r=R(S.mem[id]);if(r<0.9)out.push([+id,r])}return out.sort((a,b)=>a[1]-b[1]).map(x=>x[0])}
+
+/* ================= CALENDAR: one new surah per day ================= */
+const dayKey=(t=now())=>new Date(t).toDateString();
+const nextDay=()=>{for(const d of DAYS)if(!S.learned[d.day])return d;return null};
+function canLearnToday(){return S.preview||S.lastNew!==dayKey()}
+function status(d){
+  if(S.cert[d.day])return'cert';
+  if(S.learned[d.day])return'done';
+  const nx=nextDay();
+  if(nx&&nx.day===d.day)return'now';
+  return S.preview?'open':'lock';
+}
+function tickStreak(){
+  const today=dayKey(),y=dayKey(now()-DAYMS);
+  if(S.lastDay===today)return;
+  S.streak=(S.lastDay===y)?S.streak+1:1;S.lastDay=today;
+}
+
+/* ================= ROUTER ================= */
+const app=document.getElementById('app');
+let view={name:'home'};
+function go(v){view=v;closeSheet();render();window.scrollTo(0,0)}
+function render(){({home:Home,lesson:Lesson,read:Read,done:Done,cert:Cert,certdone:CertDone}[view.name]||Home)()}
+
+/* ================= HOME ================= */
+function ring(p,size=108,stroke=10){
+  const r=(size-stroke)/2,c=2*Math.PI*r;
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="${stroke}"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#E8D6A0" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p)}" transform="rotate(-90 ${size/2} ${size/2})"/></svg>`;
+}
+function topbar(){
+  return `${S.preview?'<div class="banner">Preview mode: every day is open so you can try them all. <button style="text-decoration:underline;font-weight:700" onclick="openSettings()">Change</button></div>':''}
+  <div class="top"><div class="wrap">
+    <button class="pill" onclick="openSettings()" aria-label="Settings">☰</button>
+    <span class="pill" title="Day streak"><i>●</i> ${S.streak} day${S.streak===1?'':'s'}</span>
+    <span class="pill" title="Points"><i>◆</i> ${fmt(S.xp)}</span>
+    <div class="brand">معجم القرآن</div>
+  </div></div>`;
+}
+function Home(){
+  const u=understanding(), nx=nextDay(), due=dueList().length, fat=surahUnderstanding(1);
+  const learnedN=Object.keys(S.learned).length, certN=Object.keys(S.cert).length;
+  const okToday=canLearnToday();
+  app.innerHTML=topbar()+`
+  <div class="hero"><div class="wrap">
+    <div class="eyebrow">114 days · one surah a day · every word of the Qurʾan</div>
+    <div class="meter">
+      <div class="ring">${ring(u)}<b>${(u*100).toFixed(u<.1?1:0)}%</b></div>
+      <p>You understand <strong>${(u*100).toFixed(1)}%</strong> of the words of the Qurʾan right now.<br>
+      Al-Fātiḥah, which you pray every day: <strong>${Math.round(fat*100)}%</strong>.</p>
+    </div>
+    ${nx?`<div class="today">
+      <div class="kicker">${okToday?`Today · Day ${nx.day} of 114`:`Tomorrow · Day ${nx.day}`}</div>
+      <div class="sname ar">${nx.ar}</div>
+      <div class="meta">Sūrat ${esc(nx.en)} · ${nx.v} verses · ${fmt(nx.tw)} words</div>
+      <span class="chip gold">${nx.nw} new word${nx.nw===1?'':'s'}</span>
+      ${nx.day>1?`<span class="chip">${nx.pk}% of it you already know</span>`:''}
+      ${(GBYDAY[nx.day]||[]).map(g=>`<span class="chip">New: ${esc(g.title.split(' · ')[0])}</span>`).join('')}
+      ${okToday?`<button class="big" onclick="startLesson(${nx.day})">Start today's lesson</button>`
+               :`<button class="big" disabled>Come back tomorrow</button><p class="note" style="margin-top:8px">One surah a day. Today you can review, read, or get certified.</p>`}
+    </div>`:`<div class="today"><div class="kicker">All 114 days complete</div><div class="sname ar">ٱلْحَمْدُ لِلَّهِ</div><p class="meta">You have met every word of the Qurʾan. Keep it alive with reviews.</p></div>`}
+  </div></div>
+  <div class="wrap">
+    <div class="row2" style="margin-top:16px">
+      <button class="big em" ${due?'':'disabled'} onclick="startReview()">Review${due?` · ${due}`:''}</button>
+      <button class="big ghost" onclick="go({name:'read',n:${(nx||DAYS[113]).n}})">Read</button>
+    </div>
+    <p class="note" style="margin-top:8px">${due?`${due} word${due===1?' is':'s are'} starting to slip. A review now locks them back in.`:learnedN?'Nothing is slipping right now. The app will call words back just before you would forget them.':'Your first lesson takes about five minutes.'}</p>
+    <h2>Your path</h2>
+    <p class="note">${learnedN} of 114 days learned · ${certN} surah${certN===1?'':'s'} certified</p>
+    <div class="path">${pathHTML()}</div>
+    <p class="src">Vocabulary, roots and grammar: Quranic Arabic Corpus v0.4 (corpus.quran.com). Arabic text and word-by-word English: Quran.com. Every one of the ${fmt(L.length)} vocabulary items appears on exactly one day, in the order the Qurʾan introduces it when read from An-Nās back to Al-Fātiḥah.</p>
+  </div>`;
+}
+const GROUPS=[[1,37,'Juz ʿAmma'],[38,48,'Juz Tabārak'],[49,114,'The rest of the Qurʾan']];
+function pathHTML(){
+  return GROUPS.map(([a,b,t])=>`<div class="gsep">${t}</div>`+DAYS.slice(a-1,b).map(d=>{
+    const st=status(d);
+    return `<button class="node ${st}" onclick="openDay(${d.day})">
+      <span class="dot">${st==='cert'?'★':d.day}</span>
+      <span class="nm"><b>${esc(d.en)}</b><small>${st==='cert'?'Certified':st==='done'?'Learned · take the certification':st==='now'?'Up next':''}${st==='open'||st==='lock'?'':' · '}${d.nw} new · ${fmt(d.cum)} known after</small></span>
+      <span class="an ar">${d.ar}</span></button>`}).join('')).join('');
+}
+function openDay(day){
+  const d=DAYS[day-1],st=status(d);
+  if(st==='lock'){sheet(`<div class="kicker">Day ${day}</div><p class="prompt">${esc(d.en)} opens on day ${day}.</p><p class="note">One surah a day keeps the words. Turn on preview mode in settings to look ahead.</p>`);return}
+  const learned=S.learned[day];
+  sheet(`<div class="kicker">Day ${day} · Surah ${d.n}</div>
+    <div class="ar" style="font-size:2.2rem;color:var(--em)">${d.ar}</div>
+    <p class="note">${esc(d.en)} · ${d.v} verses · ${d.nw} new words · ${Math.round(surahUnderstanding(d.n)*100)}% understood now</p>
+    ${S.cert[day]?`<span class="chip gold">★ Certified ${new Date(S.cert[day].t).toLocaleDateString()}</span>`:''}
+    <button class="big" onclick="startLesson(${day})">${learned?'Redo the lesson':'Start the lesson'}</button>
+    <div class="row2"><button class="big ghost" onclick="go({name:'read',n:${d.n}})">Read</button>
+    <button class="big em" onclick="startCert(${day})">Certify</button></div>`);
+}
+
+/* ================= EXERCISES ================= */
+function distractors(l,k,pool){
+  const out=[],seen=new Set([l.g.toLowerCase()]);
+  const src=shuffle(pool.filter(x=>x.id!==l.id));
+  for(const x of src){const g=x.g.toLowerCase();if(!seen.has(g)){seen.add(g);out.push(x)}if(out.length===k)break}
+  return out;
+}
+function poolFor(l){
+  const near=L.filter(x=>x.day<=Math.max(l.day,3)&&x.id!==l.id);
+  return near.length>=6?near:L.slice(0,60);
+}
+function makeItem(l,kind){
+  kind=kind||rand(['mean','mean','rev','cloze']);
+  const ds=distractors(l,3,poolFor(l));
+  if(kind==='rev')return{kind,l,opts:shuffle([l,...ds]),ar:true};
+  if(kind==='cloze')return{kind,l,opts:shuffle([l,...ds]),ar:true,cloze:true};
+  return{kind:'mean',l,opts:shuffle([l,...ds])};
+}
+function verseHTML(l,mode){
+  return verse(l).map((w,i)=>i===l.w-1?(mode==='blank'?'<span class="blank">&nbsp;</span>':`<mark>${esc(w[0])}</mark>`):esc(w[0])).join(' ');
+}
+function audioBtn(l){
+  const p=`${String(surahOf(l)).padStart(3,'0')}_${String(l.a).padStart(3,'0')}_${String(l.w).padStart(3,'0')}`;
+  return `<button class="chip" onclick="play('${p}')">▶ Hear it</button>`;
+}
+let AUD;function play(p){try{AUD&&AUD.pause();AUD=new Audio('https://audio.qurancdn.com/wbw/'+p+'.mp3');AUD.play().catch(()=>{})}catch(e){}}
+
+/* ================= LESSON ENGINE =================
+   A lesson is a queue of steps. New words come in groups of four: meet them, then practise them.
+   A missed item goes back into the queue, so the lesson ends only when every word is answered right. */
+let Q=null;
+function startLesson(day){
+  const d=DAYS[day-1], ids=d.nu.slice();
+  const steps=[];
+  (GBYDAY[day]||[]).forEach(g=>steps.push({t:'gram',g}));
+  for(let i=0;i<ids.length;i+=4){
+    const grp=ids.slice(i,i+4).map(id=>L[id]);
+    grp.forEach(l=>steps.push({t:'meet',l}));
+    shuffle(grp).forEach(l=>steps.push({t:'ex',it:makeItem(l,'mean')}));
+    shuffle(grp).forEach(l=>steps.push({t:'ex',it:makeItem(l,rand(['rev','cloze']))}));
+  }
+  // weave in up to 6 slipping words from earlier days
+  dueList().filter(id=>L[id].day<day).slice(0,6).forEach(id=>steps.splice(Math.floor(Math.random()*steps.length)+1,0,{t:'ex',it:makeItem(L[id]),rev:true}));
+  Q={kind:'lesson',day,steps,i:0,total:steps.length,right:0,wrong:0,missed:new Set(),t0:now()};
+  go({name:'lesson'});
+}
+function startReview(){
+  const ids=dueList().slice(0,15);if(!ids.length)return;
+  const steps=shuffle(ids).map(id=>({t:'ex',it:makeItem(L[id]),rev:true}));
+  Q={kind:'review',steps,i:0,total:steps.length,right:0,wrong:0,missed:new Set(),t0:now()};
+  go({name:'lesson'});
+}
+function Lesson(){
+  const st=Q.steps[Q.i];
+  if(!st){finish();return}
+  const pct=Math.min(100,Q.i/Q.steps.length*100);
+  let body='';
+  if(st.t==='gram'){
+    const g=st.g;
+    body=`<div class="gram"><div class="kicker" style="color:#E8D6A0">New in the Qurʾan today</div><h3>${esc(g.title)}</h3><p>${esc(g.ex)}</p>
+      <div class="ex"><div class="ar">${esc(g.w)}</div><div>${esc(g.tr)}</div><div class="ref" style="color:#CFE0D8;text-align:center">${esc(BYN[g.s].en)} ${g.s}:${g.a} — the first time you meet it</div></div></div>
+      <div class="foot"><button class="big" onclick="next()">Got it</button></div>`;
+  }else if(st.t==='meet'){
+    const l=st.l;
+    body=`<div class="kicker">New word</div>
+    <div class="wordcard"><div class="w ar">${esc(form(l))}</div><div class="g">${esc(l.ctx||l.g)}</div>
+      <div class="dict">Dictionary form <span>${esc(l.lem)}</span> — ${esc(l.g)}${l.root?` · root <span>${esc(rootD(l.root))}</span>`:''}</div>
+      <span class="freq">Appears ${fmt(l.f)} time${l.f===1?'':'s'} in the Qurʾan</span> ${audioBtn(l)}
+      <div class="ayah ar">${verseHTML(l)}</div><div class="ref">${esc(DAYS[l.day-1].en)} ${surahOf(l)}:${l.a}</div></div>
+    <div class="foot"><button class="big" onclick="next()">Continue</button></div>`;
+  }else{
+    const it=st.it,l=it.l;
+    const head=it.kind==='mean'?`<div class="prompt">What does this mean?</div><div class="wordcard"><div class="w ar">${esc(form(l))}</div><div class="ayah ar">${verseHTML(l)}</div></div>`
+      :it.kind==='rev'?`<div class="prompt">Which word means “${esc(l.g)}”?</div>`
+      :`<div class="prompt">Complete the verse</div><div class="wordcard"><div class="ayah ar" style="border:0;margin:0;padding:0">${verseHTML(l,'blank')}</div><div class="note" style="margin-top:6px">The missing word means “${esc(l.ctx||l.g)}”.</div></div>`;
+    body=`${st.rev?'<div class="kicker">Review</div>':''}${head}
+      <div class="opts">${it.opts.map((o,k)=>`<button class="opt${it.ar?' ar':''}" data-k="${k}" onclick="pick(${k})">${esc(it.ar?(it.cloze?form(o):o.lem):o.g)}</button>`).join('')}</div>
+      <div class="foot" id="foot"><button class="big" id="check" disabled onclick="check()">Check</button></div>`;
+  }
+  app.innerHTML=`<div class="wrap"><div class="lbar"><button class="x" onclick="quit()" aria-label="Leave">×</button><div class="prog"><i style="width:${pct}%"></i></div></div><div class="stage">${body}</div></div>`;
+}
+let picked=null;
+function pick(k){picked=k;document.querySelectorAll('.opt').forEach(b=>b.classList.toggle('sel',+b.dataset.k===k));document.getElementById('check').disabled=false}
+function check(){
+  const st=Q.steps[Q.i],it=st.it,ok=it.opts[picked].id===it.l.id;
+  document.querySelectorAll('.opt').forEach(b=>{b.disabled=true;const o=it.opts[+b.dataset.k];if(o.id===it.l.id)b.classList.add('right');else if(+b.dataset.k===picked)b.classList.add('wrong')});
+  grade(it.l.id,ok);
+  if(ok){Q.right++;S.xp+=10}else{Q.wrong++;Q.missed.add(it.l.id);Q.steps.push({t:'ex',it:makeItem(it.l),retry:true})}
+  save();picked=null;
+  const l=it.l;
+  document.getElementById('foot').innerHTML=`<div class="fb ${ok?'ok':'no'}">${ok?rand(['Right.','Exactly.','Yes — that’s it.','Well done.']):'Not quite — it comes back in a moment.'}
+    <small><span class="ar" style="font-size:1.2rem">${esc(form(l))}</span> = ${esc(l.ctx||l.g)}${l.root?` · root ${esc(rootD(l.root))}`:''}</small></div>
+    <button class="big ${ok?'':'em'}" onclick="next()">Continue</button>`;
+}
+function next(){Q.i++;render()}
+function quit(){sheet(`<p class="prompt">Leave this lesson?</p><p class="note">What you answered is kept. The lesson starts over next time.</p><button class="big em" onclick="go({name:'home'})">Leave</button><button class="big ghost" onclick="closeSheet()">Keep going</button>`)}
+function finish(){
+  if(Q.kind==='lesson'){
+    const first=!S.learned[Q.day];
+    S.learned[Q.day]={t:now()};
+    if(first)S.lastNew=dayKey();
+    DAYS[Q.day-1].nu.forEach(id=>{if(!S.mem[id])grade(id,true)});
+  }
+  tickStreak();S.xp+=Q.kind==='lesson'?50:20;save();go({name:'done'});
+}
+function Done(){
+  const d=Q.day?DAYS[Q.day-1]:null, acc=Q.right/Math.max(1,Q.right+Q.wrong), mins=Math.max(1,Math.round((now()-Q.t0)/6e4));
+  app.innerHTML=`<div class="wrap done">
+    <div class="kicker">${Q.kind==='lesson'?`Day ${d.day} complete`:'Review complete'}</div>
+    ${d?`<div class="ar big2">${d.ar}</div>`:''}
+    <div class="stats3"><div><b>${d?d.nw:Q.total}</b><small>${d?'new words':'words reviewed'}</small></div><div><b>${Math.round(acc*100)}%</b><small>first-try accuracy</small></div><div><b>${S.streak}</b><small>day streak</small></div></div>
+    <p class="note">You now understand <b>${(understanding()*100).toFixed(1)}%</b> of the words of the Qurʾan${d?` and <b>${Math.round(surahUnderstanding(d.n)*100)}%</b> of ${esc(d.en)}`:''}. ${mins} minute${mins===1?'':'s'}.</p>
+    ${d?`<button class="big" onclick="go({name:'read',n:${d.n},hl:${d.day}})">Read ${esc(d.en)} with your new words</button>
+    <button class="big em" onclick="startCert(${d.day})">Take the certification</button>`:''}
+    <button class="big ghost" onclick="go({name:'home'})">Back to your path</button></div>`;
+}
+
+/* ================= READER ================= */
+function Read(){
+  const d=BYN[view.n], hl=view.hl||d.day;
+  const newSet=new Set(DAYS[hl-1].nu);
+  app.innerHTML=topbar()+`<div class="wrap reader">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+      <button class="chip" onclick="go({name:'home'})">← Path</button>
+      <span class="note">Day ${d.day} · ${esc(d.en)}</span></div>
+    <div class="ar" style="font-size:2.4rem;text-align:center;color:var(--em);margin-top:6px">سُورَةُ ${d.ar}</div>
+    <p class="note" style="text-align:center">${Math.round(surahUnderstanding(d.n)*100)}% of this surah's words are yours. Tap any word.</p>
+    <div class="legend"><span class="lk">known</span><span class="ln">new today</span><span class="lu">not yet</span></div>
+    ${T[d.n].map((ay,ai)=>`<div class="ay ar">${ay.map((w,wi)=>`<span class="wd ${w[1]>=0&&newSet.has(w[1])?'n':w[1]>=0&&known(w[1])?'k':'u'}" onclick="tapWord(${d.n},${ai},${wi})">${esc(w[0])}</span>`).join(' ')}<span class="am">﴿${(ai+1).toLocaleString('ar-EG')}﴾</span></div>`).join('')}
+    <button class="big em" onclick="startCert(${d.day})">Certify this surah</button></div>`;
+}
+function tapWord(n,ai,wi){
+  const w=T[n][ai][wi],l=w[1]>=0?L[w[1]]:null;
+  sheet(`<div class="ar" style="font-size:2.6rem;color:var(--em2);text-align:center">${esc(w[0])}</div>
+    <p class="prompt" style="text-align:center;margin:0">${esc(w[2])}</p>
+    ${l?`<p class="note" style="text-align:center">Dictionary form <span class="ar" style="font-size:1.2rem">${esc(l.lem)}</span> — ${esc(l.g)}${l.root?` · root ${esc(rootD(l.root))}`:''}<br>Met on day ${l.day} (${esc(DAYS[l.day-1].en)}) · appears ${fmt(l.f)} times · ${known(l.id)?'you know this word':'not yet yours'}</p>`:'<p class="note" style="text-align:center">A small joining word with no dictionary entry of its own.</p>'}
+    <button class="big ghost" onclick="closeSheet()">Close</button>`);
+}
+
+/* ================= CERTIFICATION =================
+   Tests the whole vocabulary of the surah — not just today's new words. Pass at 90% to certify. */
+function startCert(day){
+  const d=DAYS[day-1], ids=shuffle(d.voc).slice(0,Math.min(20,d.voc.length));
+  const steps=ids.map(id=>({t:'ex',it:makeItem(L[id],rand(['mean','rev','cloze']))}));
+  Q={kind:'cert',day,steps,i:0,total:steps.length,right:0,wrong:0,t0:now()};
+  go({name:'cert'});
+}
+function Cert(){
+  const st=Q.steps[Q.i];
+  if(!st){certFinish();return}
+  const it=st.it,l=it.l,d=DAYS[Q.day-1];
+  const head=it.kind==='mean'?`<div class="prompt">What does this mean?</div><div class="wordcard"><div class="w ar">${esc(form(l))}</div></div>`
+    :it.kind==='rev'?`<div class="prompt">Which word means “${esc(l.g)}”?</div>`
+    :`<div class="prompt">Complete the verse</div><div class="wordcard"><div class="ayah ar" style="border:0;margin:0;padding:0">${verseHTML(l,'blank')}</div></div>`;
+  app.innerHTML=`<div class="wrap"><div class="lbar"><button class="x" onclick="go({name:'home'})">×</button><div class="prog"><i style="width:${Q.i/Q.total*100}%"></i></div><span class="note">${Q.i+1}/${Q.total}</span></div>
+  <div class="stage"><div class="kicker">Certification · ${esc(d.en)}</div>${head}
+  <div class="opts">${it.opts.map((o,k)=>`<button class="opt${it.ar?' ar':''}" onclick="certPick(${k})">${esc(it.ar?(it.cloze?form(o):o.lem):o.g)}</button>`).join('')}</div></div></div>`;
+}
+function certPick(k){const it=Q.steps[Q.i].it,ok=it.opts[k].id===it.l.id;grade(it.l.id,ok);ok?Q.right++:Q.wrong++;Q.i++;save();render()}
+function certFinish(){
+  const score=Q.right/Q.total, pass=score>=0.9;
+  if(pass&&!S.cert[Q.day]){S.cert[Q.day]={t:now(),score};S.xp+=100}
+  tickStreak();save();view={name:'certdone',score,pass};render();
+}
+function CertDone(){
+  const d=DAYS[Q.day-1],{score,pass}=view;
+  app.innerHTML=`<div class="wrap done">${pass?`
+    <div class="cert"><div class="seal">★</div><div class="kicker">Certified</div>
+      <div class="ar big2">سُورَةُ ${d.ar}</div>
+      <p>knows the vocabulary of Sūrat ${esc(d.en)} — ${d.voc.length} words — scoring ${Math.round(score*100)}%.</p>
+      <p class="note" style="margin-top:8px">${new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})} · Day ${d.day} of 114</p></div>`
+    :`<div class="kicker">Not yet</div><div class="ar big2">${d.ar}</div><p class="prompt">${Math.round(score*100)}% — you need 90%.</p><p class="note">The words you missed are now in your reviews. Try again after a review.</p>`}
+    <button class="big" onclick="go({name:'home'})">Back to your path</button>
+    ${pass?'':`<button class="big em" onclick="startCert(${d.day})">Try again</button>`}</div>`;
+}
+
+/* ================= SHEET + SETTINGS ================= */
+function sheet(html){document.getElementById('sheetBody').innerHTML=html;document.getElementById('sheet').classList.add('on');document.getElementById('scrim').classList.add('on')}
+function closeSheet(){document.getElementById('sheet').classList.remove('on');document.getElementById('scrim').classList.remove('on')}
+document.getElementById('scrim').onclick=closeSheet;
+function openSettings(){
+  sheet(`<p class="prompt">Settings</p>
+  <div class="toggle"><div><b>Preview mode</b><div class="note">Open every day now. Off = one new surah per calendar day, the real course.</div></div><button class="sw ${S.preview?'on':''}" onclick="S.preview=!S.preview;save();openSettings();render()"></button></div>
+  <div class="toggle"><div><b>Start over</b><div class="note">Clears progress on this device.</div></div><button class="chip" onclick="S=blank();save();go({name:'home'})">Reset</button></div>
+  <button class="big ghost" onclick="closeSheet()">Done</button>`);
+}
+
+/* ================= AGENT INTERFACE =================
+   Plain functions an agent (or a test) can call to read and drive the course. */
+window.CQL={
+  status:()=>({day:(nextDay()||{}).day||null,learned:Object.keys(S.learned).map(Number),certified:Object.keys(S.cert).map(Number),
+    understandingPct:+(understanding()*100).toFixed(2),due:dueList().length,streak:S.streak,xp:S.xp,preview:S.preview}),
+  day:n=>{const d=DAYS[n-1];return d&&{day:d.day,surah:d.n,name:d.en,newWords:d.nu.map(id=>({ar:form(L[id]),lemma:L[id].lem,meaning:L[id].g,root:L[id].root})),grammar:(GBYDAY[n]||[]).map(g=>g.title)}},
+  word:q=>L.filter(l=>l.lem===q||form(l)===q||l.g.toLowerCase()===String(q).toLowerCase()).map(l=>({lemma:l.lem,meaning:l.g,root:l.root,day:l.day,freq:l.f})),
+  open:v=>go(v), startLesson, startReview, startCert
+};
+render();
+</script>
+</body>
+</html>
