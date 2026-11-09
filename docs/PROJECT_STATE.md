@@ -1,6 +1,6 @@
 # Cumulative Qur'anic Lexicon — Project State
 
-Last updated: 2026-08-16
+Last updated: 2026-11-09
 
 ## Purpose
 
@@ -87,20 +87,28 @@ A learner should not need to leave the current Workbook to understand, relate, f
 
 Roots, Forms, Concordance, Compare, Drills, and the word-detail experience are therefore Workbook capabilities, not disconnected primary learning destinations.
 
-## Current Site Limitation
+## Current Site State
 
-The live/static application still contains Juz 'Amma-era assumptions and handcrafted `WORDS`-driven counts. The generated corpus calculation is correct and stored, but the UI has not yet been refactored to consume it.
+The app now consumes the verified calculation. `scripts/embed_corpus.py` embeds a compact copy of `data/generated/cumulative-vocabulary.json` into `index.html`; every displayed count (header totals, the 114 day cards, charts, per-surah stats, new-item lists, Method figures) reads from it. `scripts/check_app.py` guards this in CI.
+
+- Book tab: all 114 days, grouped Juz 'Amma / Juz Tabarak / the rest. Each day shows words, verses, new today, carried in, known after, % of text already known, new roots, and the full list of new vocabulary items with roots.
+- Corpus lemmas that match a handcrafted teaching entry open the word panel.
+- Teaching notes, Roots, Forms, Compare, Concordance, Drills and Workbook still cover Juz 'Amma only (Concordance: recorded text of surahs 114–100).
+- New-item lists have no English meanings outside the handcrafted Juz 'Amma notes.
 
 ## Remaining Work
 
-1. Wire `data/generated/cumulative-vocabulary.json` into the application so all displayed cumulative counts come from the verified full-corpus model.
-2. Expand the surah/day experience to all 114 surahs.
+1. ~~Wire the generated data into the app~~ — done 2026-11-09.
+2. ~~Expand the surah/day list to all 114 surahs~~ — done for counts and new-item lists; meanings/teaching notes beyond Juz 'Amma still to come.
 3. Rebuild navigation around the per-surah Workbook architecture above.
 4. Move Roots, Forms, Concordance, Compare, Drills, and contextual word-detail learning into each current-surah Workbook.
 5. Keep handcrafted teaching annotations as enrichment only; never let annotation completeness drive exhaustive corpus claims.
 6. Decide and implement the separately labeled grammar/function-word learning layer for QAC STEMs without canonical `LEM:` where pedagogically useful.
 7. Surface source/provenance and metric definitions in a compact defensible way.
-8. Add UI/regression tests that ensure displayed counts match generated data.
+8. ~~Regression check that displayed counts match generated data~~ — done (`scripts/check_app.py`, CI).
+9. Add English meanings for corpus vocabulary items beyond the Juz 'Amma notes.
+10. Extend Concordance to the full corpus text.
+11. Put the chosen custom domain on the Git-linked Vercel project (`cumulative-quranic-lexicon-n1cm`) and retire the older CLI-uploaded project that still serves `cumulative-quranic-lexicon.vercel.app`.
 
 ## Source-of-Truth Rule
 
